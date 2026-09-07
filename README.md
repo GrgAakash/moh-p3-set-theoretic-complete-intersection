@@ -1,9 +1,19 @@
+> **Version notice:** When the manuscript is fully edited and revised by humans,
+> it will be marked **Final Version**.
+
 # Moh's P3 curve is a set-theoretic complete intersection
 
 [![Palomar CI](https://github.com/GrgAakash/moh-p3-set-theoretic-complete-intersection/actions/workflows/ci.yml/badge.svg)](https://github.com/GrgAakash/moh-p3-set-theoretic-complete-intersection/actions/workflows/ci.yml)
 
 This repository contains the Lean 4 formalization accompanying the manuscript
 *Moh's P3 Curve Is a Global Set-Theoretic Complete Intersection*.
+
+## Manuscript versions
+
+Manuscript snapshots are stored in [`Papers/`](Papers/). The Palomar
+formalization corresponds to [`v1`](Papers/v1/), which is the version intended
+for the initial Palomar submission. Later manuscript revisions will be stored
+as `v2`, `v3`, and so on without changing the earlier snapshots.
 
 ## The result
 
@@ -86,9 +96,10 @@ independent computational cross-checks and are not trusted by any Lean proof.
 
 - [`MohP3/`](MohP3/) contains the substantive Lean development.
 - [`MohP3.lean`](MohP3.lean) is the library aggregator and axiom audit.
-- [`paper/Moh_P3_global.tex`](paper/Moh_P3_global.tex) and
-  [the compiled PDF](paper/Moh_P3_global.pdf) give the
+- [`Papers/v1/Moh_P3_global.tex`](Papers/v1/Moh_P3_global.tex) and
+  [the compiled PDF](Papers/v1/Moh_P3_global.pdf) give the versioned
   mathematical manuscript.
+- [`Papers/README.md`](Papers/README.md) records the manuscript-version policy.
 - [`docs/VERIFICATION.md`](docs/VERIFICATION.md) records the independent build,
   assumption, and packaging audit.
 - [`docs/FORMALIZATION_PROMPT.md`](docs/FORMALIZATION_PROMPT.md) records the
