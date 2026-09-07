@@ -62,10 +62,10 @@ lemma reindexFun_mul (e : σ ≃ τ) (f g : MvPowerSeries σ R) :
       (fun q => (Finsupp.equivMapDomain e.symm q.1, Finsupp.equivMapDomain e.symm q.2))
       ?_ ?_ ?_ ?_ ?_
   · rintro ⟨a, b⟩ hab
-    simp only [Finset.mem_antidiagonal] at hab ⊢
+    simp only [Finset.HasAntidiagonal.mem_antidiagonal] at hab ⊢
     rw [← emd_add, hab, emd_comp']
   · rintro ⟨a, b⟩ hab
-    simp only [Finset.mem_antidiagonal] at hab ⊢
+    simp only [Finset.HasAntidiagonal.mem_antidiagonal] at hab ⊢
     rw [← emd_add, hab]
   · rintro ⟨a, b⟩ _
     simp [emd_comp]
@@ -120,8 +120,9 @@ lemma optionFun_add (f g : MvPowerSeries (Option σ) R) :
 the product of the antidiagonals of `n` and of `d`. -/
 lemma sum_antidiagonal_optionElim {M : Type*} [AddCommMonoid M] [DecidableEq σ]
     (n : ℕ) (d : σ →₀ ℕ) (F : ((Option σ →₀ ℕ) × (Option σ →₀ ℕ)) → M) :
-    ∑ p ∈ Finset.antidiagonal (Finsupp.optionElim n d), F p =
-      ∑ q ∈ Finset.antidiagonal n, ∑ r ∈ Finset.antidiagonal d,
+    ∑ p ∈ Finset.HasAntidiagonal.antidiagonal (Finsupp.optionElim n d), F p =
+      ∑ q ∈ Finset.HasAntidiagonal.antidiagonal n,
+        ∑ r ∈ Finset.HasAntidiagonal.antidiagonal d,
         F (Finsupp.optionElim q.1 r.1, Finsupp.optionElim q.2 r.2) := by
   rw [← Finset.sum_product']
   refine Finset.sum_nbij'
@@ -129,16 +130,16 @@ lemma sum_antidiagonal_optionElim {M : Type*} [AddCommMonoid M] [DecidableEq σ]
       (fun q => (Finsupp.optionElim q.1.1 q.2.1, Finsupp.optionElim q.1.2 q.2.2))
       ?_ ?_ ?_ ?_ ?_
   · rintro ⟨a, b⟩ hab
-    simp only [Finset.mem_antidiagonal] at hab
-    simp only [Finset.mem_product, Finset.mem_antidiagonal]
+    simp only [Finset.HasAntidiagonal.mem_antidiagonal] at hab
+    simp only [Finset.mem_product, Finset.HasAntidiagonal.mem_antidiagonal]
     constructor
     · have := congrArg (fun (u : Option σ →₀ ℕ) => u none) hab
       simpa using this
     · have : (a + b).some = (Finsupp.optionElim n d).some := by rw [hab]
       simpa using this
   · rintro ⟨⟨i, j⟩, ⟨d1, d2⟩⟩ hq
-    simp only [Finset.mem_product, Finset.mem_antidiagonal] at hq
-    simp only [Finset.mem_antidiagonal]
+    simp only [Finset.mem_product, Finset.HasAntidiagonal.mem_antidiagonal] at hq
+    simp only [Finset.HasAntidiagonal.mem_antidiagonal]
     obtain ⟨h1, h2⟩ := hq
     ext a
     cases a with
@@ -198,7 +199,7 @@ instance isNoetherianRing_fin {R : Type*} [CommRing R] [IsNoetherianRing R] (n :
       exact isNoetherianRing_of_ringEquiv R (pemptyEquiv (Fin 0))
   | succ n ih =>
       have e1 : MvPowerSeries (Fin (n + 1)) R ≃+* MvPowerSeries (Option (Fin n)) R :=
-        reindexEquiv (finSuccEquiv n)
+        reindexEquiv (_root_.finSuccEquiv n)
       have e2 : MvPowerSeries (Option (Fin n)) R ≃+* PowerSeries (MvPowerSeries (Fin n) R) :=
         optionEquiv
       have : IsNoetherianRing (PowerSeries (MvPowerSeries (Fin n) R)) := inferInstance

@@ -78,7 +78,7 @@ lemma wOrd_mul {F G : MvPowerSeries (Fin 3) k} {m n : ℕ} (hF : WOrd F m) (hG :
   rw [MvPowerSeries.coeff_mul]
   refine Finset.sum_eq_zero ?_
   rintro ⟨d1, d2⟩ hp
-  rw [Finset.mem_antidiagonal] at hp
+  rw [Finset.HasAntidiagonal.mem_antidiagonal] at hp
   have hw : wt d1 + wt d2 = wt d := by rw [← wt_add, hp]
   rcases lt_or_ge (wt d1) m with h1 | h1
   · rw [hF d1 h1, zero_mul]
@@ -149,7 +149,7 @@ lemma yOrd_mul {p q : PowerSeries k} {m n : ℕ} (hp : YOrd p m) (hq : YOrd q n)
   rw [PowerSeries.coeff_mul]
   refine Finset.sum_eq_zero ?_
   rintro ⟨d1, d2⟩ hpair
-  rw [Finset.mem_antidiagonal] at hpair
+  rw [Finset.HasAntidiagonal.mem_antidiagonal] at hpair
   rcases lt_or_ge (8 * d1) m with h1 | h1
   · rw [hp d1 h1, zero_mul]
   · have h2 : 8 * d2 < n := by omega
@@ -195,16 +195,16 @@ lemma exists_yOrd_limit (g : ℕ → PowerSeries k) (s₀ : ℕ)
 lemma exists_wOrd_limit (g : ℕ → MvPowerSeries (Fin 3) k) (s₀ : ℕ)
     (hg : ∀ s, WOrd (g s) (s - s₀)) :
     ∃ G : MvPowerSeries (Fin 3) k, ∀ M, WOrd (G - ∑ s ∈ Finset.range M, g s) (M - s₀) := by
-  refine ⟨(fun d => ∑ s ∈ Finset.range (wt d + s₀ + 1), coeff d (g s) :
-    MvPowerSeries (Fin 3) k), ?_⟩
+  let G : MvPowerSeries (Fin 3) k :=
+    fun d => ∑ s ∈ Finset.range (wt d + s₀ + 1), coeff d (g s)
+  refine ⟨G, ?_⟩
   intro M d hd
   have hMle : wt d + s₀ + 1 ≤ M := by omega
   have hzero : ∀ s ∈ Finset.range M, s ∉ Finset.range (wt d + s₀ + 1) → coeff d (g s) = 0 := by
     intro s _ hs
     rw [Finset.mem_range] at hs
     exact hg s d (by omega)
-  have hco : coeff d ((fun d => ∑ s ∈ Finset.range (wt d + s₀ + 1), coeff d (g s) :
-      MvPowerSeries (Fin 3) k)) = ∑ s ∈ Finset.range (wt d + s₀ + 1), coeff d (g s) := rfl
+  have hco : coeff d G = ∑ s ∈ Finset.range (wt d + s₀ + 1), coeff d (g s) := rfl
   have hsub : Finset.range (wt d + s₀ + 1) ⊆ Finset.range M := by
     intro s hs; simp only [Finset.mem_range] at hs ⊢; omega
   rw [map_sub, hco, map_sum, Finset.sum_subset hsub hzero, sub_self]

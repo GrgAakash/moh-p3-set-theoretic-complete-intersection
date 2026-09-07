@@ -20,7 +20,29 @@ reports, exact-arithmetic certificate data, and the accompanying manuscript.
 It contained no Git metadata, so repository or commit claims in supplied prose
 were not independently verifiable from the archive.
 
-## Independent clean build
+## Current Lean 4.33 migration verification
+
+The public submission package now pins
+
+```text
+Lean:    leanprover/lean4:v4.33.0
+Mathlib: db584cd6d46c92f209a44c0f1c829460d327499d
+```
+
+A complete `lake build` succeeded with 8,729 jobs.  The substantive theorem
+statements and assumptions are unchanged.  Compatibility edits use the public
+`Ideal.height` API in place of the now-private `primeHeight` API, qualify the
+moved antidiagonal and `finSuccEquiv` names, and add one type annotation needed
+by Lean 4.33 elaboration.  The build emits only style/deprecation warnings and
+the two deliberate `sorry` warnings in `Challenge.lean`; `Solution.lean` and
+the substantive `MohP3` library remain fully proved.
+
+The complete Comparator replay also succeeded using `lean4export` revision
+`15f6055e299ad5b89345e533cc2192f4cc00f659`, which declares the same Lean
+4.33.0 toolchain.  NanoDa accepted the exported solution, Lean's default
+kernel accepted it, and Comparator reported `Your solution is okay!`.
+
+## Original independent clean build
 
 The archive was extracted into a fresh temporary directory.  With the pinned
 Mathlib cache available, the command

@@ -122,16 +122,14 @@ theorem two_le_height_Ppoly : 2 ≤ (Ppoly k).height := by
   haveI := Ppoly_isPrime k
   haveI := PsurfK_isPrime k
   haveI : (⊥ : Ideal (Rk k)).IsPrime := Ideal.isPrime_bot
-  have h1 : (⊥ : Ideal (Rk k)).primeHeight + 1 ≤ (PsurfK k).primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt (bot_lt_PsurfK k)
-  have h2 : (PsurfK k).primeHeight + 1 ≤ (Ppoly k).primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt (PsurfK_lt_Ppoly k)
-  rw [Ideal.height_eq_primeHeight]
-  have hbot : (⊥ : Ideal (Rk k)).primeHeight = 0 := by
-    rw [← Ideal.height_eq_primeHeight, Ideal.height_bot]
-  calc (2 : ℕ∞) = (⊥ : Ideal (Rk k)).primeHeight + 1 + 1 := by rw [hbot]; rfl
-    _ ≤ (PsurfK k).primeHeight + 1 := by gcongr
-    _ ≤ (Ppoly k).primeHeight := h2
+  have h1 : (⊥ : Ideal (Rk k)).height + 1 ≤ (PsurfK k).height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime (bot_lt_PsurfK k)
+  have h2 : (PsurfK k).height + 1 ≤ (Ppoly k).height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime (PsurfK_lt_Ppoly k)
+  have hbot : (⊥ : Ideal (Rk k)).height = 0 := Ideal.height_bot
+  calc (2 : ℕ∞) = (⊥ : Ideal (Rk k)).height + 1 + 1 := by rw [hbot]; rfl
+    _ ≤ (PsurfK k).height + 1 := by gcongr
+    _ ≤ (Ppoly k).height := h2
 
 /-- **The height of the curve ideal is two over any characteristic-zero
 field.** -/

@@ -128,16 +128,14 @@ theorem two_le_height_P : 2 ≤ P.height := by
   haveI := P_isPrime
   haveI := Psurf_isPrime
   haveI : (⊥ : Ideal R).IsPrime := Ideal.isPrime_bot
-  have h1 : (⊥ : Ideal R).primeHeight + 1 ≤ Psurf.primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt bot_lt_Psurf
-  have h2 : Psurf.primeHeight + 1 ≤ P.primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt Psurf_lt_P
-  rw [Ideal.height_eq_primeHeight]
-  have hbot : (⊥ : Ideal R).primeHeight = 0 := by
-    rw [← Ideal.height_eq_primeHeight, Ideal.height_bot]
-  calc (2 : ℕ∞) = (⊥ : Ideal R).primeHeight + 1 + 1 := by rw [hbot]; rfl
-    _ ≤ Psurf.primeHeight + 1 := by gcongr
-    _ ≤ P.primeHeight := h2
+  have h1 : (⊥ : Ideal R).height + 1 ≤ Psurf.height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime bot_lt_Psurf
+  have h2 : Psurf.height + 1 ≤ P.height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime Psurf_lt_P
+  have hbot : (⊥ : Ideal R).height = 0 := Ideal.height_bot
+  calc (2 : ℕ∞) = (⊥ : Ideal R).height + 1 + 1 := by rw [hbot]; rfl
+    _ ≤ Psurf.height + 1 := by gcongr
+    _ ≤ P.height := h2
 
 /-- **The height of the Moh curve ideal is two.** -/
 theorem height_P : P.height = 2 := le_antisymm height_P_le_two two_le_height_P

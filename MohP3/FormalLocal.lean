@@ -188,7 +188,7 @@ lemma ooS_mod_inj {i j : Fin 8} (h : ooS i % 8 = ooS j % 8) : i = j := by
 omit [CharZero k] in
 lemma order_X_pow_mul (n : ℕ) (w : PowerSeries k) (hw : PowerSeries.coeff 0 w ≠ 0) :
     ((PowerSeries.X : PowerSeries k)^n * w).order = (n : ℕ∞) := by
-  have h0 : w.order = 0 := le_antisymm (by simpa using PowerSeries.order_le 0 hw) (zero_le _)
+  have h0 : w.order = 0 := le_antisymm (by simpa using PowerSeries.order_le 0 hw) zero_le
   rw [PowerSeries.order_mul, PowerSeries.order_X_pow, h0, add_zero]
 
 lemma order_vvS (i : Fin 8) : (vvS k i).order = (ooS i : ℕ∞) := by

@@ -1,5 +1,11 @@
 # Independent audit of the completed Moh P3 Lean development
 
+> Historical environment note: this audit was performed on the original Lean
+> 4.28.0 artifact.  The public submission package has since been migrated to
+> Lean 4.33.0 and Mathlib revision
+> `db584cd6d46c92f209a44c0f1c829460d327499d`, without changing theorem
+> statements or assumptions; see `VERIFICATION.md` for the migration record.
+
 Audit date: 2026-09-07. Verdict: **PASS** for the requested global and
 formal-local Moh P3 set-theoretic complete-intersection theorem, including
 height and arithmetic rank equal to two.

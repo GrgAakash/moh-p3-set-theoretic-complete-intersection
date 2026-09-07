@@ -220,16 +220,14 @@ theorem two_le_height_Pk : 2 ≤ (Pk k).height := by
   haveI := Pk_isPrime k
   haveI := Psurfk_isPrime k
   haveI : (⊥ : Ideal (Sk k)).IsPrime := Ideal.isPrime_bot
-  have h2 : (Psurfk k).primeHeight + 1 ≤ (Pk k).primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt (Psurfk_lt_Pk k)
-  have h1 : (⊥ : Ideal (Sk k)).primeHeight + 1 ≤ (Psurfk k).primeHeight :=
-    Ideal.primeHeight_add_one_le_of_lt (bot_lt_Psurfk k)
-  rw [Ideal.height_eq_primeHeight]
-  have hbot : (⊥ : Ideal (Sk k)).primeHeight = 0 := by
-    rw [← Ideal.height_eq_primeHeight, Ideal.height_bot]
-  calc (2 : ℕ∞) = (⊥ : Ideal (Sk k)).primeHeight + 1 + 1 := by rw [hbot]; rfl
-    _ ≤ (Psurfk k).primeHeight + 1 := by gcongr
-    _ ≤ (Pk k).primeHeight := h2
+  have h2 : (Psurfk k).height + 1 ≤ (Pk k).height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime (Psurfk_lt_Pk k)
+  have h1 : (⊥ : Ideal (Sk k)).height + 1 ≤ (Psurfk k).height :=
+    Ideal.height_add_one_le_of_lt_of_isPrime (bot_lt_Psurfk k)
+  have hbot : (⊥ : Ideal (Sk k)).height = 0 := Ideal.height_bot
+  calc (2 : ℕ∞) = (⊥ : Ideal (Sk k)).height + 1 + 1 := by rw [hbot]; rfl
+    _ ≤ (Psurfk k).height + 1 := by gcongr
+    _ ≤ (Pk k).height := h2
 
 /-- **After completion the Moh curve ideal still has height two.** -/
 theorem height_Pk : (Pk k).height = 2 :=

@@ -1,5 +1,11 @@
 # Moh P3 formalization — report
 
+> Historical environment note: this report records the original Aristotle
+> build under Lean 4.28.0.  The public submission package has since been
+> migrated to Lean 4.33.0 and Mathlib revision
+> `db584cd6d46c92f209a44c0f1c829460d327499d`, with theorem statements and
+> assumptions unchanged; see `VERIFICATION.md` for the migration verification.
+
 ## 1. Environment
 
 | item | value |

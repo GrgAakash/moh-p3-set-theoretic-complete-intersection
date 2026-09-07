@@ -109,8 +109,8 @@ independent computational cross-checks and are not trusted by any Lean proof.
 
 ## Reproduce
 
-The project pins Lean 4.28.0 and Mathlib commit
-`8f9d9cff6bd728b17a24e163c9402775d9e6a365`.
+The project pins Lean 4.33.0 and Mathlib commit
+`db584cd6d46c92f209a44c0f1c829460d327499d`.
 
 ```bash
 lake exe cache get
