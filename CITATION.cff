@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite this repository and the accompanying manuscript."
+title: "Moh's P3 curve is a set-theoretic complete intersection"
+type: software
+authors:
+  - family-names: "Gurung"
+    given-names: "Aakash"
+version: 1.0.0
+date-released: 2026-09-07
+license: Apache-2.0
+repository-code: "https://github.com/GrgAakash/moh-p3-set-theoretic-complete-intersection"

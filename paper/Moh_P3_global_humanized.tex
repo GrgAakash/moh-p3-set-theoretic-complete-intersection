@@ -1,0 +1,460 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ara}{ara}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Min}{Min}
+
+\title{Moh's $P_3$ Curve Is a Global Set-Theoretic Complete Intersection}
+\date{September 6, 2026}
+
+\subjclass[2020]{Primary 13C40, 14M10; Secondary 13H05, 13D02, 13P10}
+\keywords{set-theoretic complete intersection, arithmetic rank, Moh prime, Hilbert--Burch theorem, symmetric determinantal presentation, explicit equations}
+
+\begin{document}
+
+\begin{abstract}
+A classical question asks whether every irreducible affine curve $C'\subseteq\mathbb A^3_{\mathbb C}$ can be written set-theoretically as $C'=V(f,g)$ for two polynomials.  We do not resolve that problem in general.  We prove the global two-equation statement for the singular Moh curve
+\[
+ t\longmapsto (t^6+t^{31},t^8,t^{10}).
+\]
+Let $k$ be a field of characteristic zero, let
+\[
+ \rho:k[x,y,z]\longrightarrow k[t],\qquad
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}),
+\]
+and put $\mathfrak p=\ker\rho$.  We construct two explicit degree-$16$ polynomials $H_1,H_2\in\mathbb Z[x,y,z]$ and prove the containment
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+Consequently $\sqrt{(H_1,H_2)}=\mathfrak p$ in the global polynomial ring and $\ara(\mathfrak p)=2$.  In particular the corresponding formal prime in $k[[x,y,z]]$ is a set-theoretic complete intersection, answering the formal-local question recorded by D'Cruz.  The construction starts from the Hilbert--Burch matrix of $\mathfrak p$: a polynomial row operation of constant determinant converts its first three rows into a symmetric $3\times3$ block.  A determinant and an adjugate quadratic form then give $H_1,H_2$, while a symmetric adjugate identity gives the square containment.  The ancillary files verify the parametrization kernel and the polynomial identities used in the two containments by exact arithmetic.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+The problem that motivates this paper is the following.  Let $C'\subseteq\mathbb A^3_{\mathbb C}$ be an irreducible affine curve and let $I(C')\subseteq\mathbb C[x,y,z]$ be its defining prime ideal.  Since $I(C')$ has height two, one may ask whether there always exist two polynomials $f,g\in\mathbb C[x,y,z]$ such that
+\[
+ C'=V(f,g),\qquad\text{equivalently}\qquad I(C')=\sqrt{(f,g)}.
+\]
+In terms of arithmetic rank, this asks whether every such height-two prime has $\ara(I(C'))=2$.  This global affine-space question is open in characteristic zero for arbitrary singular curves; see the surveys of Lyubeznik and D'Cruz \cite{Lyubeznik1989,Lyubeznik1992,DCruz2020}.
+
+We treat the concrete singular curve
+\[
+ C=\{(t^6+t^{31},t^8,t^{10}):t\in k\}\subseteq\mathbb A^3_k,
+\]
+with defining prime
+\[
+ \mathfrak p=\ker\bigl(k[x,y,z]\longrightarrow k[t]\bigr),\qquad
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}).
+\]
+Completing at the origin gives the formal prime
+\[
+ P=\ker\bigl(k[[x,y,z]]\longrightarrow k[[t]]\bigr),
+\]
+for the same parametrization.  D'Cruz explicitly asked whether this formal prime is a set-theoretic complete intersection \cite[Question 2.5]{DCruz2020}.  Moh's family provides height-two primes that can require arbitrarily many ideal-theoretic generators \cite{Moh1974}.  For the present $P_3$, Gonzalez and Planas-Vilanova proved that four generators are minimal in characteristic zero \cite{GonzalezPlanas2026}.  Thus this example is not an ideal-theoretic complete intersection.
+
+Our main theorem gives the following global containment.
+
+\begin{theorem}\label{thm:main}
+Let $k$ be a field of characteristic zero and let
+\[
+ S=k[x,y,z],\qquad
+ \mathfrak p=\ker\bigl(S\longrightarrow k[t]\bigr),
+\]
+where $(x,y,z)\mapsto(t^6+t^{31},t^8,t^{10})$.  The explicit polynomials $H_1,H_2$ of Appendix~\ref{app:expanded} satisfy
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+Consequently
+\[
+ \sqrt{(H_1,H_2)}=\mathfrak p
+ \qquad\text{and}\qquad
+ \ara_S(\mathfrak p)=2.
+\]
+\end{theorem}
+
+The formal-local statement is a corollary.
+
+\begin{corollary}\label{cor:formal}
+Let $R=k[[x,y,z]]$ and let $P$ be the kernel of the same parametrization into $k[[t]]$.  Then
+\[
+ \sqrt{(H_1,H_2)R}=P.
+\]
+In particular $\ara_R(P)=2$.
+\end{corollary}
+
+\begin{proof}
+It remains to justify that the formal kernel is the extended polynomial
+kernel.  Put
+\[
+ B=S/\mathfrak p
+   =k[t^6+t^{31},t^8,t^{10}]
+ \quad\text{and}\quad
+ \mathfrak n=(x,y,z)B.
+\]
+The ring $k[t]$ is finite over $B$, since $t$ is integral over $B$ by
+$t^8=y$.  Moreover $\operatorname{Frac}(B)=k(t)$: in
+$\operatorname{Frac}(B)$ one has
+\[
+ t^2=\frac zy,\qquad
+ t^6=\left(\frac zy\right)^3,\qquad
+ t^{31}=x-\left(\frac zy\right)^3,
+ \qquad
+ t=\frac{t^{31}}{(t^2)^{15}}.
+\]
+Thus the normalization of $B_{\mathfrak n}$ is $k[t]_{(t)}$; the prime
+$(t)$ is the unique prime above $\mathfrak n$, since $t^8=y\in\mathfrak n$.
+The finite injection
+\[
+ B_{\mathfrak n}\longrightarrow k[t]_{(t)}
+\]
+remains injective after $\mathfrak n$-adic completion.  On the right,
+$\mathfrak n k[t]_{(t)}=(t^6)$ because $t^6+t^{31}=t^6(1+t^{25})$,
+so this completion is $k[[t]]$.  On the left it is
+$R/\mathfrak pR$.  The resulting injection is precisely the formal
+parametrization, and hence $P=\mathfrak pR$.
+
+The inclusions in Theorem~\ref{thm:main} remain true after extension from
+$S$ to $R$.  Taking radicals now gives the claim.
+\end{proof}
+
+The proof of Theorem~\ref{thm:main} uses a symmetric presentation of the Hilbert--Burch matrix.  Section~\ref{sec:HB} recalls the four generators and their Hilbert--Burch matrix.  Section~\ref{sec:sym} gives a row operation with constant determinant $216$ that converts the top $3\times3$ block into a symmetric matrix $M$.  If $r$ is the last row, then the maximal minors are generated by
+\[
+ \Delta=\det M,\qquad v=\adj(M)r^{\mathsf T}.
+\]
+The two equations are scalar multiples of
+\[
+ \Delta\qquad\text{and}\qquad \Gamma=r\adj(M)r^{\mathsf T}.
+\]
+A $3\times3$ symmetric adjugate identity shows that every product $v_iv_j$ lies in $(\Delta,\Gamma)$, hence the square of the prime lies in the two-generated ideal.  No localization, saturation, or primary decomposition is required.
+
+\section{The four generators and the Hilbert--Burch matrix}\label{sec:HB}
+Throughout, $S=k[x,y,z]$ with $\operatorname{char}k=0$.  The characteristic-zero generators from \cite{GonzalezPlanas2026} are
+\begin{align*}
+ f_1={}&x^4-x^2y^4z^3-2xy^6z^2-4xyz-3y^3z^5+3y^3,\\
+ f_2={}&x^3y-xy^5z^3-3xz^2-2y^7z^2+2y^2z,\\
+ f_3={}&2x^3z-3x^2y^2-2xy^4z^4-y^6z^3+yz^2,\\
+ f_4={}&x^2yz-2xy^3-y^5z^4+z^3.
+\end{align*}
+Thus
+\[
+ \mathfrak p=(f_1,f_2,f_3,f_4).
+\]
+
+Consider the $4\times3$ matrix
+\[
+\Phi=
+\begin{pmatrix}
+0&2xy&-2z(2xy^3z^2+y^5z-1)\\
+z&-2x^2&y(4x^2yz^3+2xy^3z^2-3)\\
+-2y&-3z&-x+6y^2z^4\\
+3x&3y&0
+\end{pmatrix}.
+\]
+
+\begin{lemma}\label{lem:HB}
+The signed $3\times3$ minors of $\Phi$, obtained by deleting rows $1,2,3,4$, are respectively
+\[
+ 6f_1,-6f_2,6f_3,-6f_4.
+\]
+Consequently $I_3(\Phi)=\mathfrak p$, and $\Phi$ is a Hilbert--Burch matrix for $\mathfrak p$.
+\end{lemma}
+
+\begin{proof}
+The minor identities are direct polynomial calculations.  Since $\mathfrak p$ is a height-two prime and $6\in k^\times$, the ideal of maximal minors is exactly $\mathfrak p$.  The Hilbert--Burch theorem gives the asserted presentation; see \cite[Theorem 20.15]{Eisenbud1995}.
+\end{proof}
+
+\section{A constant-determinant symmetrization}\label{sec:sym}
+Set
+\[
+ \alpha=16x^3yz^2-10x^2y^3z+18y^2z^3,
+ \qquad
+ \beta=16x^2y^2z^2-10xy^4z,
+\]
+and define
+\[
+L=
+\begin{pmatrix}
+0&4&0&0\\
+-9&0&0&-\frac83x\\
+\alpha&\beta&6&6y^4z^2\\
+0&0&0&1
+\end{pmatrix}.
+\]
+A direct calculation gives
+\[
+ \det L=216.
+\]
+Hence $L\in\operatorname{GL}_4(S)$.  Multiplying the Hilbert--Burch matrix on the left gives
+\[
+ L\Phi=
+ \begin{pmatrix}
+ M\\ r
+ \end{pmatrix},
+ \qquad r=(3x,3y,0),
+\]
+where $M$ is the symmetric matrix
+\begin{center}
+\resizebox{\textwidth}{!}{$\displaystyle
+M=
+\begin{pmatrix}
+4z&-8x^2&4y(4x^2yz^3+2xy^3z^2-3)\\
+-8x^2&-26xy&18z(2xy^3z^2+y^5z-1)\\
+4y(4x^2yz^3+2xy^3z^2-3)&18z(2xy^3z^2+y^5z-1)&m_{33}
+\end{pmatrix},
+$}
+\end{center}
+with
+\[
+ m_{33}=2\bigl(16x^3yz^3-34x^2y^3z^2-36xy^5z^6+15xy^5z-3x-18y^7z^5+36y^2z^4\bigr).
+\]
+Because left multiplication by $L$ is an automorphism of $S^4$, the ideal of maximal minors is unchanged:
+\[
+ I_3\!\left(\begin{matrix}M\\r\end{matrix}\right)=I_3(\Phi)=\mathfrak p.
+\]
+
+Put
+\[
+ \Delta=\det M,\qquad
+ v=\adj(M)r^{\mathsf T}=(v_1,v_2,v_3)^{\mathsf T},\qquad
+ \Gamma=r\adj(M)r^{\mathsf T}.
+\]
+Up to signs, the four maximal minors of the $4\times3$ matrix $\left(\begin{smallmatrix}M\\r\end{smallmatrix}\right)$ are $v_1,v_2,v_3,\Delta$.  Hence
+\begin{equation}\label{eq:p-vdelta}
+ \mathfrak p=(\Delta,v_1,v_2,v_3).
+\end{equation}
+
+The following elementary identity is the algebraic core of the proof.
+
+\begin{lemma}[symmetric adjugate identity]\label{lem:adj}
+Let $A$ be any commutative ring, let $M\in M_3(A)$ be symmetric, and let $r=(r_1,r_2,r_3)$.  Put
+\[
+ \Delta=\det M,\qquad C=\adj(M),\qquad v=Cr^{\mathsf T},\qquad \Gamma=rCr^{\mathsf T},
+\]
+and let
+\[
+ R_r=
+ \begin{pmatrix}
+0&-r_3&r_2\\
+r_3&0&-r_1\\
+-r_2&r_1&0
+\end{pmatrix}.
+\]
+Then
+\begin{equation}\label{eq:adj-identity}
+ vv^{\mathsf T}-\Gamma C=-\Delta\,R_rMR_r^{\mathsf T}.
+\end{equation}
+Consequently $v_iv_j\in(\Delta,\Gamma)$ for all $1\le i,j\le3$.
+\end{lemma}
+
+\begin{proof}
+Equation~\eqref{eq:adj-identity} is the $3\times3$ form of Jacobi's complementary-minor identity.  One may verify it over the universal polynomial ring in the six independent entries of a symmetric $M$ and the three entries of $r$: for $\Delta\ne0$, substitute $C=\Delta M^{-1}$ and apply Jacobi's formula for the $2\times2$ minors of $M^{-1}$; clearing denominators gives \eqref{eq:adj-identity}, hence the polynomial identity holds universally.  Entrywise, the left side therefore differs from a multiple of $\Gamma$ by a multiple of $\Delta$, which gives the final assertion.
+\end{proof}
+
+\section{The two global equations}\label{sec:global}
+Define
+\begin{equation}\label{eq:H-det}
+ H_1=-\frac1{16}\Delta,
+ \qquad
+ H_2=\frac1{36}\Gamma.
+\end{equation}
+The determinant calculation shows that these are in fact polynomials with integer coefficients; their expanded forms are recorded in Appendix~\ref{app:expanded}.  Both have degree $16$.
+
+\begin{proposition}\label{prop:containment}
+The polynomials in \eqref{eq:H-det} satisfy
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:p-vdelta}, $\Delta\in\mathfrak p$ and each $v_i\in\mathfrak p$.  Since
+\[
+ \Gamma=r_1v_1+r_2v_2+r_3v_3,
+\]
+we also have $\Gamma\in\mathfrak p$.  Thus $(H_1,H_2)=(\Delta,\Gamma)\subseteq\mathfrak p$, because $16$ and $36$ are units.
+
+For the reverse containment, \eqref{eq:p-vdelta} shows that $\mathfrak p^2$ is generated by products among $\Delta,v_1,v_2,v_3$.  Every product containing $\Delta$ lies in $(\Delta,\Gamma)$, and Lemma~\ref{lem:adj} gives
+\[
+ v_iv_j\in(\Delta,\Gamma)
+ \qquad(1\le i,j\le3).
+\]
+Hence $\mathfrak p^2\subseteq(\Delta,\Gamma)=(H_1,H_2)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:containment} gives
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+Since $\mathfrak p$ is prime,
+\[
+ \mathfrak p=\sqrt{\mathfrak p^2}
+ \subseteq\sqrt{(H_1,H_2)}
+ \subseteq\sqrt{\mathfrak p}=\mathfrak p.
+\]
+Thus $\sqrt{(H_1,H_2)}=\mathfrak p$.  Since $\operatorname{ht}\mathfrak p=2$, the arithmetic rank is exactly two.
+\end{proof}
+
+\begin{remark}\label{rem:charp}
+The containment identities in Section~\ref{sec:verification} use only integer coefficients and scalar factors divisible by $2$ and $3$.  Combined with the generator theorem of \cite{GonzalezPlanas2026}, the same global conclusion therefore persists in characteristic $p\ge5$.  We state the main theorem in characteristic zero because that is the case of the classical open question considered here.
+\end{remark}
+
+\section{Comparison with the local construction}
+The global equations $H_1,H_2$ are different from the degree-$27$ and degree-$22$ pair obtained from the conormal/canonical-module construction in the earlier local argument.  That local pair correctly defines the formal germ at the origin but possesses the additional global component
+\[
+ (x,4z^5-1).
+\]
+For the present pair, the global containment
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p
+\]
+precludes additional minimal primes.  No localization or saturation is required.
+
+The proof uses a structural feature of the Hilbert--Burch matrix.  The constant-determinant row operation $L$ turns three of its rows into a symmetric matrix.  For a $4\times3$ matrix of the form $\left(\begin{smallmatrix}M\\r\end{smallmatrix}\right)$ with $M$ symmetric, the determinant $\det M$ and the adjugate quadratic form $r\adj(M)r^{\mathsf T}$ automatically generate an ideal containing the square of the maximal-minor ideal.  In the Moh example the symmetrization occurs globally over the polynomial ring because $\det L=216$ is constant.
+
+\section{Computational verification}\label{sec:verification}
+The proof does not require a direct radical computation.  The explicit polynomial identities can also be checked by exact computer algebra.
+
+Over $\mathbb Q$, the ancillary verification package performs the following checks.
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\item It recomputes the kernel of
+\[
+ \mathbb Q[x,y,z]\longrightarrow\mathbb Q[t],\qquad
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}),
+\]
+by elimination and verifies that it equals $(f_1,f_2,f_3,f_4)$.
+\item It verifies $\det L=216$ and the exact matrix identity
+\[
+ L\Phi=\begin{pmatrix}M\\r\end{pmatrix},\qquad M=M^{\mathsf T}.
+\]
+\item It verifies
+\[
+ \det M=-16H_1,
+ \qquad
+ r\adj(M)r^{\mathsf T}=36H_2.
+\]
+\item It verifies the short membership identities
+\begin{align*}
+H_1={}&-24x f_1+\bigl(64x^4yz^2-40x^3y^3z+72xy^2z^3-81y^4z^2\bigr)f_3+81f_4,\\
+H_2={}&-12y f_1+27x f_2+\bigl(-40x^3y^2z^2+25x^2y^4z+36y^3z^3\bigr)f_3,
+\end{align*}
+which directly prove $(H_1,H_2)\subseteq\mathfrak p$.
+\item For each $1\le i\le j\le4$, it supplies integer polynomials $A_{ij},B_{ij}$ and a positive integer $d_{ij}$ such that
+\[
+ d_{ij}f_if_j=A_{ij}H_1+B_{ij}H_2.
+\]
+The ten scalar factors are
+\[
+\begin{array}{c|cccccccccc}
+(i,j)&11&12&13&14&22&23&24&33&34&44\\ \hline
+d_{ij}&5832&2916&972&8748&1458&486&4374&162&1458&13122.
+\end{array}
+\]
+As a compact example,
+\[
+ 162f_3^2=-y(5x^3-2yz)H_1-x(8x^3+13yz)H_2.
+\]
+These ten identities prove $\mathfrak p^2\subseteq(H_1,H_2)$ over characteristic zero.
+\end{enumerate}
+
+The supplied checker uses sparse rational polynomial arithmetic and verifies the displayed identities independently of the script that produced them.  A Macaulay2 replay file is also included so that the kernel computation and the ideal containments can be reproduced in a standard commutative-algebra system \cite{Macaulay2}.  No floating-point computation or numerical root finding is used.
+
+\appendix
+\section{Expanded global equations}\label{app:expanded}
+We record the two global equations in expanded form:
+\begin{align*}
+H_1={}&128x^7yz^3-272x^6y^3z^2-128x^5y^5z^6+120x^5y^5z-24x^5\\
+&+16x^4y^7z^5+208x^4y^2z^4+40x^3y^9z^4-394x^3y^4z^3\\
+&-144x^2y^6z^7+291x^2y^6z^2+177x^2yz+90xy^8z^6\\
+&+144xy^3z^5-234xy^3+81y^{10}z^5-162y^5z^4+81z^3,
+\end{align*}
+\begin{align*}
+H_2={}&-80x^6y^2z^3+170x^5y^4z^2+80x^4y^6z^6-75x^4y^6z+15x^4y\\
+&-10x^3y^8z^5+32x^3y^3z^4-25x^2y^{10}z^4-98x^2y^5z^3-81x^2z^2\\
+&-72xy^7z^7-30xy^7z^2+102xy^2z-36y^9z^6+72y^4z^5-36y^4.
+\end{align*}
+
+\section{Verification files}
+The ancillary package contains the expanded equations, the ten square-containment identities, machine-readable coefficient data, a standalone exact-arithmetic checker, and a Macaulay2 replay script.  The radical equality follows directly from the two ideal containments and does not require a primary decomposition.
+
+\begin{thebibliography}{99}
+
+\bibitem{Boratyński1978}
+M.~Boraty\'nski,
+\emph{A note on set-theoretic complete intersection ideals},
+J. Algebra \textbf{54} (1978), no.~1, 1--5.
+
+\bibitem{Bresinsky1979}
+H.~Bresinsky,
+\emph{Monomial space curves in $\mathbb A^3$ as set-theoretic complete intersections},
+Proc. Amer. Math. Soc. \textbf{75} (1979), no.~1, 23--24.
+
+\bibitem{CowsikNori1978}
+R.~C. Cowsik and M.~V. Nori,
+\emph{Affine curves in characteristic $p$ are set-theoretic complete intersections},
+Invent. Math. \textbf{45} (1978), no.~2, 111--114.
+
+\bibitem{DCruz2020}
+C.~D'Cruz,
+\emph{Symbolic powers, set-theoretic complete intersection and certain invariants},
+The Special Issue of the Proceedings of the Telangana Academy of Sciences \textbf{1} (2020), no.~1, 75--84; arXiv:2003.09101.
+
+\bibitem{Eisenbud1995}
+D.~Eisenbud,
+\emph{Commutative Algebra with a View Toward Algebraic Geometry},
+Graduate Texts in Mathematics, vol.~150, Springer, New York, 1995.
+
+\bibitem{GonzalezPlanas2026}
+L.~Gonz\'alez and F.~Planas-Vilanova,
+\emph{Prime ideals of Moh and the characteristic of the field},
+J. Algebra Appl., published online 17 March 2026, article 2750170; also arXiv:2407.21692.
+
+\bibitem{Lyubeznik1989}
+G.~Lyubeznik,
+\emph{A survey of problems and results on the number of defining equations},
+in \emph{Commutative Algebra} (Berkeley, CA, 1987), Math. Sci. Res. Inst. Publ., vol.~15, Springer, New York, 1989, pp.~375--390.
+
+\bibitem{Lyubeznik1992}
+G.~Lyubeznik,
+\emph{The number of defining equations of affine algebraic sets},
+Amer. J. Math. \textbf{114} (1992), no.~2, 413--463.
+
+\bibitem{Macaulay2}
+D.~R. Grayson and M.~E. Stillman,
+\emph{Macaulay2, a software system for research in algebraic geometry},
+\url{https://macaulay2.com/}.
+
+\bibitem{Moh1974}
+T.~T. Moh,
+\emph{On the unboundedness of generators of prime ideals in power series rings of three variables},
+J. Math. Soc. Japan \textbf{26} (1974), no.~4, 722--734.
+
+\bibitem{Moh1982}
+T.~T. Moh,
+\emph{A result on the set-theoretic complete intersection problem},
+Proc. Amer. Math. Soc. \textbf{86} (1982), no.~1, 19--20.
+
+\bibitem{Moh1985}
+T.~T. Moh,
+\emph{Set-theoretic complete intersections},
+Proc. Amer. Math. Soc. \textbf{94} (1985), no.~2, 217--220.
+
+\end{thebibliography}
+
+\end{document}

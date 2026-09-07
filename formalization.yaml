@@ -1,0 +1,184 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Moh's P3 curve is a set-theoretic complete intersection"
+  description: >-
+    A Lean 4 formalization proving that the Moh curve parametrized by
+    x=t^6+t^31, y=t^8, z=t^10 is cut out set-theoretically by two explicit
+    equations over every characteristic-zero field. The development computes
+    the polynomial and formal-power-series parametrization kernels, proves the
+    radical equality for the two-generated witness ideal, and proves that the
+    curve ideal has height two and arithmetic rank two, both globally and
+    after completion.
+  authors:
+    - "Aakash Gurung"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Aakash Gurung"
+
+classification:
+  arxiv: [math.AC, math.AG]
+  msc2020: [13C40, 14M10, 13H05, 13P10]
+
+sources:
+  - title: "Moh's P3 Curve Is a Global Set-Theoretic Complete Intersection"
+    authors:
+      - "Aakash Gurung"
+    type: paper
+    location: "paper/Moh_P3_global_humanized.tex"
+    relationship: formalizes
+    note: >-
+      The Lean development formalizes the manuscript's global and formal-local
+      set-theoretic complete-intersection conclusions. Its formal-local kernel
+      proof uses an explicit weighted division argument rather than the
+      manuscript's normalization-and-completion proof.
+    license: "Apache-2.0"
+    author_endorsement: participated
+  - title: "Prime ideals of Moh and the characteristic of the field"
+    authors:
+      - "Luis González"
+      - "Francesc Planas-Vilanova"
+    id: "arXiv:2407.21692"
+    type: article
+    location: "https://arxiv.org/abs/2407.21692"
+    relationship: background
+    note: >-
+      Source for the characteristic-zero generators of the Moh P3 prime used
+      by the manuscript and formalization.
+    author_endorsement: n/a
+  - title: "Symbolic powers, set-theoretic complete intersection and certain invariants"
+    authors:
+      - "Clare D'Cruz"
+    id: "arXiv:2003.09101"
+    type: article
+    location: "https://arxiv.org/abs/2003.09101"
+    relationship: background
+    note: >-
+      Records the formal-local set-theoretic complete-intersection question
+      answered for this Moh prime.
+    author_endorsement: n/a
+  - title: "On the unboundedness of generators of prime ideals in power series rings of three variables"
+    authors:
+      - "T. T. Moh"
+    type: article
+    location: "Journal of the Mathematical Society of Japan 26 (1974), 722-734"
+    relationship: background
+    note: "Introduces the family of Moh primes containing the present P3 example."
+    author_endorsement: n/a
+
+related_formalizations: []
+
+status:
+  scope: >-
+    The two compared declarations state the global polynomial theorem and the
+    formal-power-series theorem over an arbitrary characteristic-zero field.
+    Each includes the exact parametrization kernel, the radical equality for
+    the two explicit equations, height two, and arithmetic rank two. All are
+    unconditional under Field and CharZero. The proof development also checks
+    the explicit square-containment certificate. It does not formalize the
+    manuscript's Hilbert-Burch matrix symmetrization as matrix algebra, and the
+    accompanying Macaulay2 computations are not part of the Lean trust chain.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - declaration: "MohP3.Palomar.global_setTheoretic_completeIntersection"
+      module: "Solution"
+      summary: >-
+        The global Moh P3 prime is the radical of the two-generated witness
+        ideal and has height and arithmetic rank two.
+    - declaration: "MohP3.Palomar.formalLocal_setTheoretic_completeIntersection"
+      module: "Solution"
+      summary: >-
+        The same kernel, radical, height, and arithmetic-rank statements hold
+        in the formal power series ring.
+
+automation:
+  methods:
+    - method: agent
+      models: ["Aristotle (Harmonic)"]
+      framework: "Aristotle"
+      tool_setup: >-
+        Iterative AI-assisted Lean formalization with compiler feedback,
+        exact polynomial normalization, explicit proof construction, and
+        axiom reporting.
+      cost:
+        wall_time: "multiple sessions; not reconstructed"
+        spend_usd: "not tracked"
+        hardware: "hosted Aristotle service"
+      prompting_notes: >-
+        The prompts required exact preservation of the explicit equations,
+        separated polynomial and completion obligations, and forbade sorry,
+        admit, custom axioms, and hidden completion assumptions.
+    - method: agent
+      models: ["OpenAI ChatGPT", "OpenAI Codex"]
+      framework: "AI-assisted mathematical and verification workflow"
+      tool_setup: >-
+        ChatGPT and Codex assisted mathematical exploration and manuscript
+        preparation. Codex independently extracted, rebuilt, audited, and
+        packaged the supplied Lean development for Palomar.
+      cost:
+        wall_time: "not reconstructed"
+        spend_usd: "not tracked"
+        hardware: "hosted services and a local macOS workstation"
+      prompting_notes: >-
+        The workflow repeatedly distinguished certificate identities, kernel
+        identification, radical equality, completion, height, and arithmetic
+        rank, and required explicit proof-status reporting.
+  spend_usd: "not tracked"
+  notes: >-
+    The author selected and directed the mathematical target. Aristotle
+    produced and extended the Lean formalization. Codex performed a fresh
+    archive extraction, full build, assumption scan, statement audit, and
+    Palomar packaging pass. No independent human expert review is claimed.
+
+fidelity:
+  divergences: >-
+    The advertised theorem statements agree with the manuscript. The Lean
+    proof of the formal-power-series kernel uses a convergent formal division
+    algorithm for the weighted filtration wt(x)=6, wt(y)=8, wt(z)=10 rather
+    than the manuscript's normalization and adic-completion argument. Lean
+    formalizes the resulting H1,H2 certificate identities but not the
+    Hilbert-Burch row operation and symmetric-adjugate construction that
+    motivate those equations in the manuscript. No theorem-level weakening or
+    additional hypothesis is present.
+
+review:
+  status: "agent-reviewed and author-supervised"
+  reviewers:
+    - "Aristotle proof and dependency audit"
+    - "OpenAI Codex independent archive, build, and Palomar packaging audit"
+  notes: >-
+    A fresh build of the supplied project completed under Lean 4.28.0 and
+    Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365 with no
+    errors or warnings. Searches found no proof placeholders or custom axioms
+    in the substantive development. The exported results report only propext,
+    Classical.choice, and Quot.sound. The Palomar package adds only the two
+    deliberate Challenge statement holes. No independent human expert Lean or
+    mathematical peer review has yet been conducted.
+
+alignment:
+  namespace: "MohP3.Palomar"
+  statements:
+    - source: "Theorem 1.1 of paper/Moh_P3_global_humanized.tex"
+      lean: "MohP3.Palomar.global_setTheoretic_completeIntersection"
+      module: "Solution"
+      status: proved
+      note: >-
+        Packages the manuscript's global kernel, radical, height, and
+        arithmetic-rank conclusions over an arbitrary characteristic-zero
+        field.
+    - source: "Corollary 1.2 of paper/Moh_P3_global_humanized.tex"
+      lean: "MohP3.Palomar.formalLocal_setTheoretic_completeIntersection"
+      module: "Solution"
+      status: proved
+      note: >-
+        Packages the unconditional formal-power-series kernel, radical,
+        height, and arithmetic-rank conclusions. The Lean proof uses weighted
+        division instead of the source's completion argument.
+
+acknowledgements: >-
+  The formalization uses Lean and Mathlib. Aristotle (Harmonic), OpenAI
+  ChatGPT, and OpenAI Codex assisted with formalization, exploration,
+  verification, and repository preparation.
