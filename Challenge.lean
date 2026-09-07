@@ -70,21 +70,23 @@ end Gen
 
 open MvPolynomial
 
-/-- The polynomial ring `k[x,y,z]`. -/
-abbrev Rk (k : Type*) [Field k] := MvPolynomial (Fin 3) k
+variable (k : Type*) [Field k] [CharZero k]
 
-def xk (k : Type*) [Field k] : Rk k := X 0
-def yk (k : Type*) [Field k] : Rk k := X 1
-def zk (k : Type*) [Field k] : Rk k := X 2
+/-- The polynomial ring `k[x,y,z]`. -/
+abbrev Rk := MvPolynomial (Fin 3) k
+
+def xk : Rk k := X 0
+def yk : Rk k := X 1
+def zk : Rk k := X 2
 
 /-- The four-generated curve ideal in `k[x,y,z]`. -/
-def Ppoly (k : Type*) [Field k] : Ideal (Rk k) := Gen.P (xk k) (yk k) (zk k)
+def Ppoly : Ideal (Rk k) := Gen.P (xk k) (yk k) (zk k)
 
 /-- The two-generated witness ideal in `k[x,y,z]`. -/
-def Qpoly (k : Type*) [Field k] : Ideal (Rk k) := Gen.Q (xk k) (yk k) (zk k)
+def Qpoly : Ideal (Rk k) := Gen.Q (xk k) (yk k) (zk k)
 
 /-- The polynomial parametrization `x ↦ t⁶+t³¹`, `y ↦ t⁸`, `z ↦ t¹⁰`. -/
-def rho_k (k : Type*) [Field k] : Rk k →+* Polynomial k :=
+def rho_k : Rk k →+* Polynomial k :=
   eval₂Hom Polynomial.C ![Polynomial.X ^ 6 + Polynomial.X ^ 31,
     Polynomial.X ^ 8, Polynomial.X ^ 10]
 
@@ -93,22 +95,23 @@ namespace FormalLocal
 open MvPowerSeries
 
 /-- The formal power series ring `k[[x,y,z]]`. -/
-abbrev Sk (k : Type*) := MvPowerSeries (Fin 3) k
+abbrev Sk := MvPowerSeries (Fin 3) k
 
-def xs (k : Type*) [Field k] : Sk k := X 0
-def ys (k : Type*) [Field k] : Sk k := X 1
-def zs (k : Type*) [Field k] : Sk k := X 2
+def xs : Sk k := X 0
+def ys : Sk k := X 1
+def zs : Sk k := X 2
 
 /-- The four-generated curve ideal in `k[[x,y,z]]`. -/
-def Pk (k : Type*) [Field k] : Ideal (Sk k) := Gen.P (xs k) (ys k) (zs k)
+def Pk : Ideal (Sk k) := Gen.P (xs k) (ys k) (zs k)
 
 /-- The two-generated witness ideal in `k[[x,y,z]]`. -/
-def Qk (k : Type*) [Field k] : Ideal (Sk k) := Gen.Q (xs k) (ys k) (zs k)
+def Qk : Ideal (Sk k) := Gen.Q (xs k) (ys k) (zs k)
 
-def aa (k : Type*) [Field k] : Fin 3 → PowerSeries k :=
+def aa : Fin 3 → PowerSeries k :=
   ![PowerSeries.X^6 + PowerSeries.X^31, PowerSeries.X^8, PowerSeries.X^10]
 
-lemma hasSubst_aa (k : Type*) [Field k] : MvPowerSeries.HasSubst (aa k) := by
+omit [CharZero k] in
+lemma hasSubst_aa : MvPowerSeries.HasSubst (aa k) := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero
   intro s
   have hX : MvPowerSeries.constantCoeff (PowerSeries.X : PowerSeries k) = 0 :=
@@ -116,7 +119,7 @@ lemma hasSubst_aa (k : Type*) [Field k] : MvPowerSeries.HasSubst (aa k) := by
   fin_cases s <;> simp [aa, hX]
 
 /-- The formal parametrization `k[[x,y,z]] → k[[t]]`. -/
-def psi (k : Type*) [Field k] : Sk k →ₐ[k] PowerSeries k :=
+def psi : Sk k →ₐ[k] PowerSeries k :=
   MvPowerSeries.substAlgHom (hasSubst_aa k)
 
 end FormalLocal
