@@ -152,6 +152,8 @@ mathematical peer review.  No independent human expert Lean review is claimed.
 
 The exact registered version and its immutable source commit are linked under
 [Formal verification](#formal-verification) above.
+New formalizations can be submitted through the
+[Palomar submission form](https://submit.palomar-registry.org/).
 
 ## Authorship and automation
 
