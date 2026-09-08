@@ -73,6 +73,17 @@ arithmetic rank directly, then leaves exactly two deliberate theorem holes.
 proof.  [`comparator.json`](comparator.json) requires both declarations to
 match and permits only `propext`, `Quot.sound`, and `Classical.choice`.
 
+## Formal verification
+
+This formalization is registered in the Palomar Registry as
+[PALOMAR-2026-09-07-000012 v1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-09-07-000012&version=1).
+The registered record pins commit
+[`e1dd554d07425ae9822389427795bd83485a5b2c`](https://github.com/GrgAakash/moh-p3-set-theoretic-complete-intersection/commit/e1dd554d07425ae9822389427795bd83485a5b2c);
+its Lean, Comparator, and NanoDa checks succeeded.
+
+Palomar is a registry of machine-checked results, not a journal or a
+substitute for expert mathematical peer review.
+
 ## What Lean checks
 
 The proof development establishes more than the two selected conjunctions:
@@ -139,9 +150,8 @@ only `propext`, `Classical.choice`, and `Quot.sound`.
 This is a machine-checked formalization, not a substitute for expert
 mathematical peer review.  No independent human expert Lean review is claimed.
 
-After a final commit is pinned, a responsible maintainer can use the
-[Palomar submission form](https://submit.palomar-registry.org/) with
-`comparator.json` at the repository root.
+The exact registered version and its immutable source commit are linked under
+[Formal verification](#formal-verification) above.
 
 ## Authorship and automation
 

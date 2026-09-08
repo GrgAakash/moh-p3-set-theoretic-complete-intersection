@@ -101,7 +101,19 @@ algorithm.  The Hilbert–Burch symmetrization motivating `H1,H2` is described i
 the manuscript but not formalized as matrix algebra.  The Macaulay2 scripts are
 cross-checks only and are not used by Lean.
 
-## Palomar packaging checks
+## Palomar registration
+
+The formalization is registered as
+[PALOMAR-2026-09-07-000012 v1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-09-07-000012&version=1),
+which pins source commit
+`e1dd554d07425ae9822389427795bd83485a5b2c`.  Palomar's public mechanical
+[verification run](https://github.com/PalomarRegistry/PalomarSubmission/actions/runs/34147992901)
+completed successfully.  The Challenge rendered successfully, and the
+automated editorial review identified no blocking problem or nonblocking
+warning.  This is machine verification and automated editorial review, not
+independent expert mathematical peer review.
+
+## Original Palomar packaging checks
 
 The reorganized repository completed
 
@@ -122,9 +134,12 @@ passed; the Landrun-wrapper policy test passed; and Palomar's current intake
 metadata loader accepted the classifications, authorship, source provenance,
 automation, and review fields.
 
-The hardened Comparator/Landrun/NanoDa replay requires Linux, Go, and Rust,
-which are not available in the local macOS audit environment.  The repository
-pins all three verifier components, and the GitHub Actions `comparator` job is
-the authoritative replay.  Until that job succeeds, the status should be read
-as "Lean build and Palomar preflight passed; hardened Comparator replay
-pending."
+At the time of the original packaging audit, the hardened
+Comparator/Landrun/NanoDa replay was deferred to GitHub Actions because its Go
+and Rust prerequisites were not installed in the local macOS environment.
+During the Lean 4.33 migration, those prerequisites were installed in private
+temporary directories and the complete local replay succeeded: NanoDa and
+Lean's default kernel both accepted the exported solution, and Comparator
+reported `Your solution is okay!`.  The repository's GitHub Actions replay and
+Palomar's independent mechanical run subsequently succeeded on the registered
+commit.
