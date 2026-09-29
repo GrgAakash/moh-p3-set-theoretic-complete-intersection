@@ -1,4 +1,8 @@
-import MohP3.Kernel
+module
+
+public import MohP3.Kernel
+
+@[expose] public section
 
 /-!
 # Moh P3: the global theorem

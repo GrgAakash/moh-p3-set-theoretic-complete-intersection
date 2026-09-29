@@ -1,5 +1,9 @@
-import MohP3.Defs
-import MohP3.Generic
+module
+
+public import MohP3.Defs
+public import MohP3.Generic
+
+@[expose] public section
 
 /-!
 # Moh P3: the exact containment certificate over `ℚ[x,y,z]`

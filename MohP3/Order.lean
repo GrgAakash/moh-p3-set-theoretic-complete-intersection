@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # Weighted orders on `k[[x,y,z]]` and `k[[y]]`

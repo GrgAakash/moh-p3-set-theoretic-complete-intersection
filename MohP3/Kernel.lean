@@ -1,5 +1,9 @@
-import MohP3.Closure
-import MohP3.Independence
+module
+
+public import MohP3.Closure
+public import MohP3.Independence
+
+@[expose] public section
 
 /-!
 # Moh P3: `RingHom.ker rho = P`

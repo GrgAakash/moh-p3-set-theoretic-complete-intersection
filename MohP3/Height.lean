@@ -1,5 +1,9 @@
-import MohP3.Global
-import MohP3.Ara
+module
+
+public import MohP3.Global
+public import MohP3.Ara
+
+@[expose] public section
 
 /-!
 # Moh P3: the height of `P` and the arithmetic rank of `P`

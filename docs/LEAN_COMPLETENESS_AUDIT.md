@@ -2,8 +2,8 @@
 
 > Historical environment note: this audit was performed on the original Lean
 > 4.28.0 artifact.  The public submission package has since been migrated to
-> Lean 4.33.0 and Mathlib revision
-> `db584cd6d46c92f209a44c0f1c829460d327499d`, without changing theorem
+> Lean 4.35.0-rc2 and Mathlib revision
+> `065356127b1dc0016f66b7283ce0ce2c4055aa55`, without changing theorem
 > statements or assumptions; see `VERIFICATION.md` for the migration record.
 
 Audit date: 2026-09-07. Verdict: **PASS** for the requested global and

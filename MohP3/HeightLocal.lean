@@ -1,6 +1,10 @@
-import MohP3.Generation
-import MohP3.Ara
-import MohP3.MvPowerSeriesAux
+module
+
+public import MohP3.Generation
+public import MohP3.Ara
+public import MohP3.MvPowerSeriesAux
+
+@[expose] public section
 
 /-!
 # Moh P3: the height of `Pk` and the arithmetic rank of `Pk` after completion

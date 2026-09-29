@@ -1,5 +1,9 @@
-import MohP3.GenClosure
-import MohP3.IndependenceK
+module
+
+public import MohP3.GenClosure
+public import MohP3.IndependenceK
+
+@[expose] public section
 
 /-!
 # The global theorem over an arbitrary field of characteristic zero

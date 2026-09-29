@@ -1,6 +1,10 @@
-import MohP3.FormalLocal
-import MohP3.GenClosure
-import MohP3.Order
+module
+
+public import MohP3.FormalLocal
+public import MohP3.GenClosure
+public import MohP3.Order
+
+@[expose] public section
 
 /-!
 # The completed generation statement over `k[[x,y,z]]`

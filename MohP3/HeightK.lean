@@ -1,5 +1,9 @@
-import MohP3.GlobalK
-import MohP3.Ara
+module
+
+public import MohP3.GlobalK
+public import MohP3.Ara
+
+@[expose] public section
 
 /-!
 # Moh P3: height and arithmetic rank over an arbitrary characteristic-zero field

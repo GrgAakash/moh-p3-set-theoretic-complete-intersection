@@ -1,4 +1,8 @@
-import MohP3.Certificate
+module
+
+public import MohP3.Certificate
+
+@[expose] public section
 
 /-!
 # Moh P3: the kernel of the parametrization

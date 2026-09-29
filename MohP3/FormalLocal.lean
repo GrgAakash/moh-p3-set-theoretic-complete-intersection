@@ -1,4 +1,8 @@
-import MohP3.Generic
+module
+
+public import MohP3.Generic
+
+@[expose] public section
 
 /-!
 # Moh P3: the formal-local statement over `k[[x,y,z]]`

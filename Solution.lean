@@ -1,4 +1,8 @@
-import MohP3
+module
+
+public import MohP3
+
+@[expose] public section
 
 /-!
 # Proved Palomar solution

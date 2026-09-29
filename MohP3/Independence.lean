@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # Linear independence of the eight basis polynomials over `ℚ[t^8]`

@@ -1,20 +1,24 @@
-import MohP3.Defs
-import MohP3.Certificate
-import MohP3.Independence
-import MohP3.Closure
-import MohP3.Kernel
-import MohP3.Global
-import MohP3.FormalLocal
-import MohP3.Order
-import MohP3.GenClosure
-import MohP3.Generation
-import MohP3.IndependenceK
-import MohP3.GlobalK
-import MohP3.Ara
-import MohP3.Height
-import MohP3.MvPowerSeriesAux
-import MohP3.HeightLocal
-import MohP3.HeightK
+module
+
+public import MohP3.Defs
+public import MohP3.Certificate
+public import MohP3.Independence
+public import MohP3.Closure
+public import MohP3.Kernel
+public import MohP3.Global
+public import MohP3.FormalLocal
+public import MohP3.Order
+public import MohP3.GenClosure
+public import MohP3.Generation
+public import MohP3.IndependenceK
+public import MohP3.GlobalK
+public import MohP3.Ara
+public import MohP3.Height
+public import MohP3.MvPowerSeriesAux
+public import MohP3.HeightLocal
+public import MohP3.HeightK
+
+@[expose] public section
 
 /-!
 # Moh P3: exact global certificate

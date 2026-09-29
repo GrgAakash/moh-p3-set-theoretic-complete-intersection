@@ -1,4 +1,8 @@
-import MohP3.Generic
+module
+
+public import MohP3.Generic
+
+@[expose] public section
 
 /-!
 # The sixteen closure identities over an arbitrary commutative ring

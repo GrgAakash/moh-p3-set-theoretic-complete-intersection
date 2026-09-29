@@ -153,10 +153,11 @@ review:
   notes: >-
     The original supplied project was independently built under Lean 4.28.0
     and Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365. The
-    submission package was subsequently migrated to Lean 4.33.0 and Mathlib
-    revision db584cd6d46c92f209a44c0f1c829460d327499d; the complete 8,729-job
-    build succeeds. The migration changes no theorem statement or assumption
-    and makes only compatibility edits for renamed or restricted Mathlib APIs.
+    submission package was subsequently migrated to Lean 4.35.0-rc2 and
+    Mathlib revision 065356127b1dc0016f66b7283ce0ce2c4055aa55; the complete
+    8,954-job build succeeds. The migration changes no theorem statement or
+    assumption and adds the module declarations required by the current Lean
+    module system.
     Searches found no proof placeholders or custom axioms in the substantive
     development. The exported results report only propext, Classical.choice,
     and Quot.sound. The Palomar package adds only the two deliberate Challenge
@@ -166,7 +167,7 @@ review:
 alignment:
   namespace: "MohP3.Palomar"
   statements:
-    - source: "Theorem 1.1 of Papers/v1/Moh_P3_global.tex"
+    - source: "Theorem 1.1 of Papers/v2/Moh_P3_global.tex"
       lean: "MohP3.Palomar.global_setTheoretic_completeIntersection"
       module: "Solution"
       status: proved
@@ -174,7 +175,7 @@ alignment:
         Packages the manuscript's global kernel, radical, height, and
         arithmetic-rank conclusions over an arbitrary characteristic-zero
         field.
-    - source: "Corollary 1.2 of Papers/v1/Moh_P3_global.tex"
+    - source: "Corollary 1.2 of Papers/v2/Moh_P3_global.tex"
       lean: "MohP3.Palomar.formalLocal_setTheoretic_completeIntersection"
       module: "Solution"
       status: proved

@@ -11,9 +11,10 @@ This repository contains the Lean 4 formalization accompanying the manuscript
 ## Manuscript versions
 
 Manuscript snapshots are stored in [`Papers/`](Papers/). The Palomar
-formalization corresponds to [`v1`](Papers/v1/), which is the version intended
-for the initial Palomar submission. Later manuscript revisions will be stored
-as `v2`, `v3`, and so on without changing the earlier snapshots.
+formalization initially corresponded to [`v1`](Papers/v1/). The current
+submission package corresponds to [`v2`](Papers/v2/). Later manuscript
+revisions will be stored as `v3`, `v4`, and so on without changing the earlier
+snapshots.
 
 ## The result
 
@@ -105,8 +106,8 @@ independent computational cross-checks and are not trusted by any Lean proof.
 
 - [`MohP3/`](MohP3/) contains the substantive Lean development.
 - [`MohP3.lean`](MohP3.lean) is the library aggregator and axiom audit.
-- [`Papers/v1/Moh_P3_global.tex`](Papers/v1/Moh_P3_global.tex) and
-  [the compiled PDF](Papers/v1/Moh_P3_global.pdf) give the versioned
+- [`Papers/v2/Moh_P3_global.tex`](Papers/v2/Moh_P3_global.tex) and
+  [the compiled PDF](Papers/v2/Moh_P3_global.pdf) give the current versioned
   mathematical manuscript.
 - [`Papers/README.md`](Papers/README.md) records the manuscript-version policy.
 - [`docs/VERIFICATION.md`](docs/VERIFICATION.md) records the independent build,
@@ -118,8 +119,8 @@ independent computational cross-checks and are not trusted by any Lean proof.
 
 ## Reproduce
 
-The project pins Lean 4.33.0 and Mathlib commit
-`db584cd6d46c92f209a44c0f1c829460d327499d`.
+The project pins Lean 4.35.0-rc2 and Mathlib commit
+`065356127b1dc0016f66b7283ce0ce2c4055aa55`.
 
 ```bash
 lake exe cache get
