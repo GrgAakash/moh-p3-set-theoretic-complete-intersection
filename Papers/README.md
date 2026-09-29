@@ -22,8 +22,4 @@ Later manuscript revisions will be added as `v2/`, `v3/`, and so on,
 preserving the version used for the Palomar submission. Later revisions do
 not change the scope of an earlier Palomar record.
 
-**v2** is the reviewed nine-page P3-only revision. It corrects the background
-source metadata to name Laura González and Francesc Planas-Vilanova, and it
-credits their four generators and relations as the starting data for this
-note. It does not claim that Palomar verifies historical priority or source
-attribution.
+**v2** is the reviewed nine-page P3-only revision.
