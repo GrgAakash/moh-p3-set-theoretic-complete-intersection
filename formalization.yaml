@@ -175,7 +175,7 @@ alignment:
         Packages the manuscript's global kernel, radical, height, and
         arithmetic-rank conclusions over an arbitrary characteristic-zero
         field.
-    - source: "Corollary 1.2 of Papers/v2/Moh_P3_global.tex"
+    - source: "Corollary 4.1 of Papers/v2/Moh_P3_global.tex"
       lean: "MohP3.Palomar.formalLocal_setTheoretic_completeIntersection"
       module: "Solution"
       status: proved
