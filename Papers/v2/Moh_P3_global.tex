@@ -1,0 +1,437 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[expansion=false]{microtype}
+\setlength{\emergencystretch}{1em}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Moh's P3 curve is a global set-theoretic complete intersection},pdfauthor={}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ara}{ara}
+\DeclareMathOperator{\adj}{adj}
+
+\title{Moh's $P_3$ curve is a global set-theoretic complete intersection}
+\date{Version 2 --- September 29, 2026}
+
+\subjclass[2020]{Primary 13C40, 14M10; Secondary 13H05, 13D02, 13P10}
+\keywords{set-theoretic complete intersection, arithmetic rank, Moh prime, Hilbert--Burch theorem, partly symmetric matrix, determinantal ideal}
+
+\begin{document}
+
+\begin{abstract}
+Let $k$ be a field of characteristic zero and let $\mathfrak p$ be the kernel of the homomorphism $k[x,y,z]\to k[t]$ given by
+\[
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}).
+\]
+This note gives polynomials $H_1,H_2\in\mathbb Z[x,y,z]$, each of total degree $16$, such that
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+Thus the affine curve is a set-theoretic complete intersection and $\ara(\mathfrak p)=2$. An explicit invertible polynomial row operation places a Hilbert--Burch matrix in the partly symmetric setting of Valla and Kleiman--Ulrich. Their determinantal construction then gives the square containment. The same equations define the corresponding formal prime up to radical, addressing the question for this curve recorded by Hochster and D'Cruz.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Moh constructed a family of height-two prime ideals in three-variable power-series rings whose minimal numbers of generators are unbounded in characteristic zero. He also asked whether these curves are set-theoretic complete intersections \cite[p.~733, Remark~1]{Moh1974}. The case $P_3$, with parametrization $(t^6+t^{31},t^8,t^{10})$, appears explicitly in Hochster's list \cite[Question~5]{Hochster2004}, Grifo's thesis \cite[Example~4.12]{Grifo2018}, and D'Cruz's survey \cite[Question~2.5]{DCruz2020}.
+
+Moh subsequently studied the minimal generators and determinantal structure of his ideals \cite{Moh1979}. Mehta, Saha, and Sengupta gave a procedure for constructing explicit polynomial generators for the family in characteristic zero \cite{MehtaSahaSengupta2021}. For the parametrization above, Laura Gonz\'alez and Francesc Planas-Vilanova displayed four polynomial generators and proved that they minimally generate the formal prime in characteristic zero \cite[Discussion~4.6 and Theorem~4.7]{GonzalezPlanas2026}. The construction below starts from those generators and their relations.
+
+The determinantal method is also classical. Valla showed that the maximal-minor ideal of a partly symmetric matrix is defined up to radical by two equations \cite[Theorem~2.1]{Valla1980}. Kleiman and Ulrich established the full ordinary-square containment in the proof of \cite[Lemma~2.5(3)]{KleimanUlrich1997}. The point here is an explicit invertible polynomial row operation that brings the matrix for this particular Moh curve into that setting. Its determinant is a nonzero constant, so it works over the whole polynomial ring.
+
+Fix a field $k$ of characteristic zero, set $S=k[x,y,z]$, and write
+\[
+ \rho:S\longrightarrow k[t],\qquad
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}),
+ \qquad \mathfrak p=\ker\rho.
+\]
+The domain $S/\mathfrak p$ has transcendence degree one over $k$, so $\mathfrak p$ has height two. The arithmetic rank $\ara_S(\mathfrak p)$ is the least number of elements of $S$ generating an ideal with radical $\mathfrak p$.
+
+\begin{theorem}\label{thm:main}
+The polynomials $H_1,H_2$ defined in \eqref{eq:H} have integer coefficients and total degree $16$, and satisfy
+\[
+ \mathfrak p^2\subseteq(H_1,H_2)\subseteq\mathfrak p.
+\]
+Consequently,
+\[
+ \sqrt{(H_1,H_2)}=\mathfrak p,
+ \qquad \ara_S(\mathfrak p)=2.
+\]
+\end{theorem}
+
+Here $\mathfrak p^2$ denotes the ordinary ideal square. The same polynomials define the formal prime in $k[[x,y,z]]$ up to radical; see Corollary~\ref{cor:formal}.
+
+The proof has three steps. First, the four known generators are shown to generate the polynomial kernel: an explicit inverse parameter identifies the localization away from $y=0$, and a nonzerodivisor argument recovers equality in $S$. Next, the row operation produces a symmetric maximal block without changing the ideal of maximal minors. Finally, a determinant and a bordered determinant give the displayed equations. Section~\ref{sec:symmetric} recalls the determinantal identity with a proof; Section~\ref{sec:moh} carries out the construction; and Section~\ref{sec:formal} passes to the completion. The result concerns the displayed parametrization; no assertion about the other members of Moh's family is needed.
+
+\section{A symmetric maximal-minor lemma}\label{sec:symmetric}
+
+Let $A$ be a commutative ring, let $M\in M_3(A)$ be symmetric, and let $r=(r_1,r_2,r_3)$. Set
+\[
+ B=\begin{pmatrix}M\\r\end{pmatrix},\qquad
+ I=I_3(B),\qquad
+ \Delta=\det M,\qquad C=\adj(M),
+\]
+and put
+\[
+ v=Cr^{\mathsf T}=(v_1,v_2,v_3)^{\mathsf T},
+ \qquad \Gamma=rCr^{\mathsf T}=\sum_{a=1}^3 r_av_a.
+\]
+The matrix $C$ is symmetric. Expanding the maximal minors of $B$ along its last row gives
+\[
+ I=(\Delta,v_1,v_2,v_3).
+\]
+
+\begin{proposition}[Valla; Kleiman--Ulrich]\label{prop:symmetric}
+With this notation,
+\[
+ I^2\subseteq(\Delta,\Gamma)\subseteq I.
+\]
+In particular, $\sqrt I=\sqrt{(\Delta,\Gamma)}$.
+\end{proposition}
+
+The two equations are those of Valla's construction \cite[Theorem~2.1]{Valla1980}; the full square containment is established in the proof of \cite[Lemma~2.5(3)]{KleimanUlrich1997}. More explicitly, take the symmetric matrix
+\[
+ \varphi=\begin{pmatrix}0&r\\r^{\mathsf T}&M\end{pmatrix}
+\]
+in the notation of that lemma. Its determinant is $-\Gamma$, its lower-right three-by-three minor is $\Delta$, and the maximal minors of its last three columns generate $I$. The containment follows from the identities alone, without the grade hypothesis used there to deduce self-linkage. The following proof recalls the identity needed here.
+
+\begin{proof}
+The expression $\Gamma=\sum_a r_av_a$ gives $(\Delta,\Gamma)\subseteq I$. For the other inclusion, expand
+\begin{equation}\label{eq:minor-contraction}
+ v_iv_j-\Gamma C_{ij}
+ =\sum_{a,b=1}^3 r_ar_b
+   \bigl(C_{ia}C_{jb}-C_{ij}C_{ab}\bigr).
+\end{equation}
+Since $C$ is symmetric, the parenthesis is
+\[
+ \det\begin{pmatrix}C_{ia}&C_{ij}\\C_{ba}&C_{bj}\end{pmatrix}.
+\]
+It is zero when the rows or columns repeat; otherwise it is, up to sign, a two-by-two minor of $C$. Jacobi's complementary-minor identity expresses every such minor as $\Delta$ times the complementary entry of $M$, up to sign \cite[p.~467]{Lawrence1964}. This is a polynomial identity over $\mathbb Z$: one may first prove it for the universal symmetric matrix after inverting its determinant, then use injectivity of that localization and specialize. It therefore holds over $A$, without a hypothesis on $\Delta$ or on the characteristic.
+
+Equation~\eqref{eq:minor-contraction} now gives $v_iv_j\in(\Delta,\Gamma)$ for all $i,j$. Every generator of $I^2$ either contains a factor $\Delta$ or is one of these products, proving the assertion.
+\end{proof}
+
+After transposition, $B$ is partly symmetric in Valla's terminology. The second equation in his construction is the bordered determinant
+\[
+ \det\begin{pmatrix}M&r^{\mathsf T}\\r&0\end{pmatrix}=-\Gamma.
+\]
+Thus Proposition~\ref{prop:symmetric} uses the same two-generated ideal as \cite[Theorem~2.1]{Valla1980}. The argument above also works for a symmetric block of any size $n\geq2$: a two-by-two minor of its adjugate is its determinant times a complementary $(n-2)\times(n-2)$ minor. We use only the three-by-three case.
+
+\section{Application to Moh's \texorpdfstring{$P_3$}{P3}}\label{sec:moh}
+
+\subsection{The polynomial kernel}
+
+Consider the polynomials of Gonz\'alez and Planas-Vilanova \cite[Theorem~4.7]{GonzalezPlanas2026}:
+\begin{align*}
+ f_1&=x^4-x^2y^4z^3-2xy^6z^2-4xyz-3y^3z^5+3y^3,\\
+ f_2&=x^3y-xy^5z^3-3xz^2-2y^7z^2+2y^2z,\\
+ f_3&=2x^3z-3x^2y^2-2xy^4z^4-y^6z^3+yz^2,\\
+ f_4&=x^2yz-2xy^3-y^5z^4+z^3.
+\end{align*}
+Their cited result identifies the formal prime. For a global statement, one must also identify the kernel in the polynomial ring: a calculation in the completed local ring alone does not control the curve away from the origin. The next lemma establishes the required equality in $S$, using the fibre calculation and inverse parameter from Steps~3 and~6 of their proof, together with unmixedness and localization.
+
+Set $J=(f_1,f_2,f_3,f_4)$ and define
+\begin{equation}\label{eq:Phi}
+ \Phi=\begin{pmatrix}
+ 0&2xy&-2z(2xy^3z^2+y^5z-1)\\
+ z&-2x^2&y(4x^2yz^3+2xy^3z^2-3)\\
+ -2y&-3z&-x+6y^2z^4\\
+ 3x&3y&0
+ \end{pmatrix}.
+\end{equation}
+The first two columns are the coefficient vectors of the relations
+\[
+ zf_2-2yf_3+3xf_4=0,\qquad
+ 2xyf_1-2x^2f_2-3zf_3+3yf_4=0,
+\]
+which occur, up to nonzero scalar multiples, in the proof of \cite[Proposition~5.6]{GonzalezPlanas2026}. The third column completes this matrix to a presentation with the following maximal minors. Direct expansion gives
+\begin{equation}\label{eq:Phi-minors}
+ \det(\Phi_{\widehat i})=6(-1)^{i-1}f_i
+ \qquad(1\leq i\leq4),
+\end{equation}
+where $\Phi_{\widehat i}$ is obtained by deleting row $i$. In particular, $I_3(\Phi)=J$.
+
+\begin{lemma}\label{lem:global-kernel}
+One has $J=\mathfrak p$. Hence $\Phi$ is a Hilbert--Burch matrix for $\mathfrak p$ over $S$.
+\end{lemma}
+
+\begin{proof}
+\emph{Height and unmixedness.} Substitution into the parametrization gives $J\subseteq\mathfrak p$. Put $g=y^5-z^4$. The identity
+\begin{equation}\label{eq:g-certificate}
+ 3g=y^2f_1-xyf_2-3zf_4
+\end{equation}
+shows that $g\in J$. The polynomials $g$ and $f_4$ have no common irreducible factor: such a factor would lie in $k[y,z]$ and divide the coefficient $yz$ of $x^2$ in $f_4$, whereas $g$ is relatively prime to $yz$. Thus $J$ has height at least two. Since $J\subseteq\mathfrak p$ and $\operatorname{ht}(\mathfrak p)=2$, we have $\operatorname{ht}(J)=2$.
+
+Since $S$ is regular, $J$ has grade two. Equation~\eqref{eq:Phi-minors} and the Hilbert--Burch theorem give a free resolution of $S/J$ of length two \cite[Theorem~20.15, pp.~502--503]{Eisenbud1995}. If $\mathfrak q$ is an associated prime of $S/J$, then $(S/J)_{\mathfrak q}$ has depth zero. The Auslander--Buchsbaum formula over the regular local ring $S_{\mathfrak q}$ \cite[Tag~090U]{Stacks} therefore gives
+\[
+ \operatorname{ht}(\mathfrak q)
+ =\operatorname{pd}_{S_{\mathfrak q}}(S/J)_{\mathfrak q}\leq2.
+\]
+Since $\mathfrak q$ contains $J$, its height is at least two. Thus all associated primes have height two. To pass from a localization back to $S$, it remains to show that $y$ is a nonzerodivisor.
+
+\emph{The fibre at $y=0$.} Direct substitution gives
+\[
+ J+(y)=(y,x^4,xz^2,x^3z,z^3),
+ \qquad \sqrt{J+(y)}=(x,y,z).
+\]
+No associated prime of $S/J$ can therefore contain $y$. It follows that $y$ is a nonzerodivisor on $S/J$, so
+\begin{equation}\label{eq:y-injection}
+ S/J\lhook\joinrel\longrightarrow(S/J)_y
+\end{equation}
+is injective.
+
+\emph{The inverse parameter away from $y=0$.} We identify the localization explicitly. In
+\[
+ T=\bigl(S/(g,f_4)\bigr)_y,
+\]
+both $y$ and $z$ are units because $z^4=y^5$. Set $u=z/y$. Then $u^4=y$ and $u^5=z$, and $f_4=0$ becomes
+\[
+ 0=u^9\bigl((x-u^3)^2-u^{31}\bigr).
+\]
+Consequently $w=(x-u^3)u^{-15}$ satisfies $w^2=u$ and is a unit. These identities give
+\[
+ x=w^6+w^{31},\qquad y=w^8,\qquad z=w^{10}.
+\]
+They exhibit mutually inverse homomorphisms
+\[
+ T\xrightarrow{\ \rho\ }k[t,t^{-1}],\qquad
+ k[t,t^{-1}]\longrightarrow T,\quad t\longmapsto w.
+\]
+Indeed, $\rho(u)=t^2$ and $\rho(w)=t$. Hence $(g,f_4)S_y=\mathfrak pS_y$. Since $(g,f_4)\subseteq J\subseteq\mathfrak p$, we obtain $J S_y=\mathfrak pS_y$. The injection \eqref{eq:y-injection} then implies $J=\mathfrak p$.
+\end{proof}
+
+\subsection{The global symmetrization}
+
+Proposition~\ref{prop:symmetric} applies once three rows of the presentation matrix form a symmetric block. An invertible row operation preserves the maximal-minor ideal, so the task is to find such an operation over $S$. The following matrix supplies it explicitly.
+
+Set
+\[
+ \alpha=16x^3yz^2-10x^2y^3z+18y^2z^3,
+ \qquad \beta=16x^2y^2z^2-10xy^4z,
+\]
+and define
+\begin{equation}\label{eq:L}
+ L=\begin{pmatrix}
+ 0&4&0&0\\
+ -9&0&0&-\dfrac83x\\
+ \alpha&\beta&6&6y^4z^2\\
+ 0&0&0&1
+ \end{pmatrix}.
+\end{equation}
+Then
+\[
+ \det L=216,\qquad
+ L\Phi=\begin{pmatrix}M\\r\end{pmatrix},\qquad
+ r=(3x,3y,0),
+\]
+where
+\begin{equation}\label{eq:M}
+ M=\begin{pmatrix}
+ 4z&-8x^2&m_{13}\\
+ -8x^2&-26xy&m_{23}\\
+ m_{13}&m_{23}&m_{33}
+ \end{pmatrix}
+\end{equation}
+and
+\begin{align*}
+ m_{13}&=4y(4x^2yz^3+2xy^3z^2-3),\\
+ m_{23}&=18z(2xy^3z^2+y^5z-1),\\
+ m_{33}&=32x^3yz^3-68x^2y^3z^2+30xy^5z-6x\\
+       &\hspace{1em}-72xy^5z^6-36y^7z^5+72y^2z^4.
+\end{align*}
+
+The role of $\alpha$ and $\beta$ can be seen directly from the product $L\Phi$. The first two rows already have matching off-diagonal entries $-8x^2$. Matching the remaining entries in the third row requires
+\[
+ z\beta+18xy^4z^2-12y=m_{13},\qquad
+ 2xy\alpha-2x^2\beta+18y^5z^2-18z=m_{23},
+\]
+which the displayed choices satisfy. This proves the asserted symmetry without a localization.
+
+Since $216$ is a unit in $k$, $L$ is invertible over $S$. The maximal minors of $L\Phi$ are $S$-linear combinations of those of $\Phi$; applying the same observation to $L^{-1}$ gives
+\begin{equation}\label{eq:minor-ideal}
+ I_3\!\begin{pmatrix}M\\r\end{pmatrix}=I_3(\Phi)=\mathfrak p.
+\end{equation}
+
+\subsection{The two equations}
+
+The preceding construction gives the equations as $\det M$ and $r\adj(M)r^{\mathsf T}$. For ease of use, the next formulas express scalar multiples of these determinants as combinations of the four known generators.
+
+Define
+\begin{align*}
+ \ell&=64x^4yz^2-40x^3y^3z+72xy^2z^3-81y^4z^2,\\
+ \kappa&=-40x^3y^2z^2+25x^2y^4z+36y^3z^3,
+\end{align*}
+and set
+\begin{equation}\label{eq:H}
+ \begin{aligned}
+ H_1&=-24xf_1+\ell f_3+81f_4,\\
+ H_2&=-12yf_1+27xf_2+\kappa f_3.
+ \end{aligned}
+\end{equation}
+Both polynomials belong to $\mathfrak p$ and have integer coefficients. Their total degrees are at most $16$. The monomial $x^5y^5z^6$ occurs in $H_1$ with coefficient $-128$, and $x^4y^6z^6$ occurs in $H_2$ with coefficient $80$, so both degrees equal $16$.
+
+\begin{lemma}\label{lem:det}
+For $\Delta=\det M$ and $\Gamma=r\adj(M)r^{\mathsf T}$, one has
+\[
+ \Delta=-16H_1,\qquad \Gamma=36H_2.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $D_i=\det(\Phi_{\widehat i})=6(-1)^{i-1}f_i$. Expanding the determinant of the first three rows of $L\Phi$ gives
+\begin{align*}
+ \Delta&=64xD_1-\frac83\ell D_3+216D_4\\
+       &=384xf_1-16\ell f_3-1296f_4=-16H_1.
+\end{align*}
+Let $D'_i$ denote the determinant obtained from $L\Phi$ by deleting row $i$. Expanding in the same way gives
+\begin{align*}
+ D'_1&=-54D_2-9\beta D_3=324f_2-54\beta f_3,\\
+ D'_2&=24D_1-4\alpha D_3=144f_1-24\alpha f_3.
+\end{align*}
+If $v=\adj(M)r^{\mathsf T}$, the row-deletion signs give $D'_1=v_1$ and $D'_2=-v_2$. Therefore
+\begin{align*}
+ \Gamma&=3xD'_1-3yD'_2\\
+       &=-432yf_1+972xf_2+(72y\alpha-162x\beta)f_3\\
+       &=36H_2,
+\end{align*}
+where the last equality uses $72y\alpha-162x\beta=36\kappa$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:symmetric} and \eqref{eq:minor-ideal} give
+\[
+ \mathfrak p^2\subseteq(\Delta,\Gamma)\subseteq\mathfrak p.
+\]
+Since $16$ and $36$ are units in $k$, Lemma~\ref{lem:det} identifies $(\Delta,\Gamma)$ with $(H_1,H_2)$. Taking radicals proves $\sqrt{(H_1,H_2)}=\mathfrak p$. Finally, Krull's height theorem gives $\ara_S(\mathfrak p)\geq\operatorname{ht}(\mathfrak p)=2$ \cite[Tag~0BBZ]{Stacks}, and the two equations give equality.
+\end{proof}
+
+For example, the square containment includes the identity
+\[
+ 162f_3^2=-y(5x^3-2yz)H_1-x(8x^3+13yz)H_2.
+\]
+
+\section{The formal prime}\label{sec:formal}
+
+The polynomial result yields the formal statement once the extended ideal is identified with the kernel of the power-series parametrization. The argument uses a finite extension followed by completion. Compare the normalization calculations of Gonz\'alez and Planas-Vilanova \cite[proof of Theorem~4.7, Steps~5--7]{GonzalezPlanas2026}.
+
+Let $R=k[[x,y,z]]$ and let $P$ be the kernel of the continuous homomorphism
+\[
+ R\longrightarrow k[[t]],\qquad
+ (x,y,z)\longmapsto(t^6+t^{31},t^8,t^{10}).
+\]
+
+\begin{corollary}\label{cor:formal}
+One has $P=\mathfrak pR$ and
+\[
+ P^2\subseteq(H_1,H_2)R\subseteq P.
+\]
+In particular, $\sqrt{(H_1,H_2)R}=P$.
+\end{corollary}
+
+\begin{proof}
+Put $B=S/\mathfrak p=k[t^6+t^{31},t^8,t^{10}]$ and $\mathfrak n=(x,y,z)B$. Since $t^8=y$, the ring $k[t]=B[t]$ is finite over $B$. Every prime of $k[t]$ lying above $\mathfrak n$ contains $t^8$, hence contains $t$ and equals $(t)$. Moreover $(t)\cap B=\mathfrak n$. Thus $(B\setminus\mathfrak n)^{-1}k[t]$ is local and equals $k[t]_{(t)}$, giving a finite injection
+\[
+ B_{\mathfrak n}\lhook\joinrel\longrightarrow k[t]_{(t)}.
+\]
+Completion with respect to $\mathfrak n$ preserves injections of finite modules over the Noetherian ring $B_{\mathfrak n}$ \cite[Tag~00MA]{Stacks}. In $k[t]_{(t)}$, the factor $1+t^{25}$ is a unit, so
+\[
+ \mathfrak n k[t]_{(t)}
+ =(t^6(1+t^{25}),t^8,t^{10})=(t^6).
+\]
+The $\mathfrak n$-adic completion of this ring is therefore $k[[t]]$. Since the completion of $B_{\mathfrak n}$ is $R/\mathfrak pR$, we obtain an injection
+\[
+ R/\mathfrak pR\lhook\joinrel\longrightarrow k[[t]]
+\]
+induced by the parametrization. This proves $P=\mathfrak pR$. Extending the containments of Theorem~\ref{thm:main} to $R$ proves the assertions.
+\end{proof}
+
+\section*{Formal verification}
+
+The kernel identifications, radical equalities, and arithmetic-rank conclusions for the polynomial and formal-power-series ideals are formalized in Lean~4 and registered in Palomar \cite{Gurung2026Formalization}. The registered statements use the polynomials $H_1,H_2$ of \eqref{eq:H} and hold over every field of characteristic zero. The citation concerns those statements; the proof of the ordinary-square containment is given in this note. The registered formalization is separate from the source attribution and historical discussion.
+
+\section*{Use of AI tools}
+
+Codex, ChatGPT, and Aristotle were used in developing the arguments, checking computations, and preparing the manuscript.
+
+\begin{thebibliography}{99}
+
+\bibitem{DCruz2020}
+C.~D'Cruz,
+\emph{Symbolic powers, set-theoretic complete intersection and certain invariants},
+arXiv:2003.09101 (2020),
+\url{https://arxiv.org/abs/2003.09101}.
+
+\bibitem{Eisenbud1995}
+D. Eisenbud, {\it Commutative algebra}, Graduate Texts in Mathematics, 150, Springer, New York, 1995; \href{https://mathscinet.ams.org/mathscinet/article?mr=1322960}{MR1322960}.
+
+\bibitem{GonzalezPlanas2026}
+Laura Gonz\'alez and Francesc Planas-Vilanova,
+\emph{Prime ideals of Moh and the characteristic of the field},
+J. Algebra Appl., published online 17 March 2026, article 2750170,
+\url{https://doi.org/10.1142/S0219498827501702};
+arXiv:2407.21692v2 (23 February 2026).
+
+\bibitem{Grifo2018}
+E.~Grifo,
+\emph{Symbolic Powers and the Containment Problem},
+Ph.D. thesis, University of Virginia, 2018,
+\url{https://doi.org/10.18130/V3707WN5T}.
+
+\bibitem{Gurung2026Formalization}
+A.~Gurung,
+\emph{Moh's $P_3$ curve is a set-theoretic complete intersection},
+Lean~4 formalization, Palomar registry,
+\href{https://palomar-registry.org/entry.html?id=PALOMAR-2026-09-07-000012&version=1}{PALOMAR-2026-09-07-000012},
+version~1, 7 September 2026.
+
+\bibitem{Hochster2004}
+M.~Hochster,
+\emph{Thirteen open questions in commutative algebra},
+edited slides from a talk at Purdue University, July 2004,
+\href{https://sites.lsa.umich.edu/hochster/wp-content/uploads/sites/1337/2024/10/Lip.text_.pdf}{author's online notes}.
+
+\bibitem{KleimanUlrich1997}
+S.~L. Kleiman and B. Ulrich, Gorenstein algebras, symmetric matrices, self-linked ideals, and symbolic powers, Trans. Amer. Math. Soc. {\bf 349} (1997), no.~12, 4973--5000; \href{https://mathscinet.ams.org/mathscinet/article?mr=1422609}{MR1422609}.
+The cited numbering follows the preprint,
+\href{https://arxiv.org/abs/alg-geom/9509005}{arXiv:alg-geom/9509005}.
+
+\bibitem{Lawrence1964}
+P.~A. Lawrence,
+\emph{A generalization of Jacobi's theorem to hyperadjugates},
+Canad. Math. Bull. \textbf{7} (1964), 467--469,
+\url{https://doi.org/10.4153/CMB-1964-045-0}.
+
+\bibitem{MehtaSahaSengupta2021}
+R. Mehta, J. Saha and I. Sengupta, Moh's example of algebroid space curves, J. Symbolic Comput. {\bf 104} (2021), 168--182; \href{https://mathscinet.ams.org/mathscinet/article?mr=4180123}{MR4180123}.
+Preprint: \href{https://arxiv.org/abs/1807.04909v4}{arXiv:1807.04909v4}.
+
+\bibitem{Moh1974}
+T.~T. Moh, On the unboundedness of generators of prime ideals in power series rings of three variables, J. Math. Soc. Japan {\bf 26} (1974), 722--734; \href{https://mathscinet.ams.org/mathscinet/article?mr=354680}{MR0354680}.
+
+\bibitem{Moh1979}
+T.~T. Moh, On generators of ideals, Proc. Amer. Math. Soc. {\bf 77} (1979), no.~3, 309--312; \href{https://mathscinet.ams.org/mathscinet/article?mr=545586}{MR0545586}.
+
+\bibitem{Stacks}
+The Stacks Project Authors,
+\emph{The Stacks Project},
+Tags \href{https://stacks.math.columbia.edu/tag/0BBZ}{0BBZ},
+\href{https://stacks.math.columbia.edu/tag/00MA}{00MA},
+and \href{https://stacks.math.columbia.edu/tag/090U}{090U},
+\url{https://stacks.math.columbia.edu/}.
+
+\bibitem{Valla1980}
+G. Valla, On determinantal ideals which are set-theoretic complete intersections, Compositio Math. {\bf 42} (1980/81), no.~1, 3--11; \href{https://mathscinet.ams.org/mathscinet/article?mr=594479}{MR0594479}.
+
+\end{thebibliography}
+
+
+\end{document}

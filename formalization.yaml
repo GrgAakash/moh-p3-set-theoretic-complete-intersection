@@ -26,7 +26,7 @@ sources:
     authors:
       - "Aakash Gurung"
     type: paper
-    location: "Papers/v1/Moh_P3_global.tex"
+    location: "Papers/v2/Moh_P3_global.tex"
     relationship: formalizes
     note: >-
       The Lean development formalizes the manuscript's global and formal-local
@@ -37,15 +37,16 @@ sources:
     author_endorsement: participated
   - title: "Prime ideals of Moh and the characteristic of the field"
     authors:
-      - "Luis González"
+      - "Laura González"
       - "Francesc Planas-Vilanova"
     id: "arXiv:2407.21692"
     type: article
-    location: "https://arxiv.org/abs/2407.21692"
+    location: "https://arxiv.org/abs/2407.21692v2"
     relationship: background
     note: >-
-      Source for the characteristic-zero generators of the Moh P3 prime used
-      by the manuscript and formalization.
+      Source for the four characteristic-zero generators of the Moh P3 prime
+      and their relations used as starting data by the manuscript and
+      formalization. Published as DOI 10.1142/S0219498827501702.
     author_endorsement: n/a
   - title: "Symbolic powers, set-theoretic complete intersection and certain invariants"
     authors:

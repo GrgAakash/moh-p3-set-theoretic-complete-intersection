@@ -79,6 +79,10 @@ This formalization is registered in the Palomar Registry as
 [PALOMAR-2026-09-07-000012 v1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-09-07-000012&version=1).
 Its Comparator, Lean kernel, and NanoDa checks succeeded.
 
+The immutable v1 record mistakenly calls background author Laura González
+"Luis González." The repository metadata now gives the correct attribution;
+a corrected Palomar v2 record is being prepared.
+
 Palomar is a registry of machine-checked results, not a journal or a
 substitute for expert mathematical peer review.
 
