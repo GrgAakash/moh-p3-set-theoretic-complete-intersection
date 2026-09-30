@@ -92,15 +92,18 @@ The proof development establishes more than the two selected conjunctions:
   field, using an explicit eight-generator module argument;
 - the power-series kernel computation via a convergent weighted formal
   division algorithm with weights `(6,8,10)`;
+- the exact complex `0 → S^3 → S^4 → S → S/J → 0` for the manuscript's
+  explicit Hilbert–Burch matrix `Φ`, proved without using the kernel theorem;
 - primality and radical equality;
 - height two from an explicit strict chain of prime ideals;
 - arithmetic rank two from the explicit pair and Krull's height theorem.
 
-The formalization does not formalize the manuscript's Hilbert–Burch
-symmetrization narrative as matrix algebra.  It formalizes the resulting
-polynomials and verifies the exact certificate identities on which the radical
-equality rests.  The Macaulay2 files in [`computations/`](computations/) are
-independent computational cross-checks and are not trusted by any Lean proof.
+The formalization proves the Hilbert–Burch presentation directly from the
+signed maximal minors of `Φ` and the regular pair `3(y^5-z^4), f1`.  It does
+not formalize the later row operation and symmetric-adjugate construction that
+motivate `H1,H2`; it verifies the resulting certificate identities directly.
+The Macaulay2 files in [`computations/`](computations/) are independent
+computational cross-checks and are not trusted by any Lean proof.
 
 ## Repository map
 

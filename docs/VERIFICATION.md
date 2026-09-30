@@ -29,7 +29,7 @@ Lean:    leanprover/lean4:v4.35.0-rc2
 Mathlib: 065356127b1dc0016f66b7283ce0ce2c4055aa55
 ```
 
-A complete `lake build` succeeded with 8,954 jobs. The substantive theorem
+A complete `lake build` succeeded with 8,955 jobs. The substantive theorem
 statements and assumptions are unchanged. Each submitted source now declares
 a module, exposes its public section, and marks imports public as required by
 the Lean 4.35 module system. The build emits only style/deprecation warnings
@@ -89,14 +89,19 @@ characteristic-zero field:
 - identification of the parametrization kernel with the four-generated ideal;
 - containment of the square of that ideal in `(H1,H2)` and the reverse
   containment;
+- exactness of the manuscript's complex
+  `0 → S^3 → S^4 → S → S/(f1,f2,f3,f4) → 0` for its explicit matrix `Φ`;
 - primality and radical equality;
 - height two;
 - arithmetic rank two.
 
 The formal-local kernel equality is not obtained by silently extending the
 polynomial theorem.  It is proved by an explicit convergent weighted division
-algorithm.  The Hilbert–Burch symmetrization motivating `H1,H2` is described in
-the manuscript but not formalized as matrix algebra.  The Macaulay2 scripts are
+algorithm.  The Hilbert–Burch presentation is proved by a direct signed-minor
+criterion using the regular pair `3(y^5-z^4), f1`; its dependency audit confirms
+that it does not use the parametrization-kernel theorem.  The later row
+operation and symmetric-adjugate construction motivating `H1,H2` is described
+in the manuscript but is not part of this module.  The Macaulay2 scripts are
 cross-checks only and are not used by Lean.
 
 ## Palomar registration

@@ -17,6 +17,7 @@ public import MohP3.Height
 public import MohP3.MvPowerSeriesAux
 public import MohP3.HeightLocal
 public import MohP3.HeightK
+public import MohP3.HilbertBurch
 
 @[expose] public section
 
@@ -58,6 +59,10 @@ This is the top-level module.  The development is split as follows.
 * `MohP3.IndependenceK`, `MohP3.GlobalK` – the global theorem
   (`RingHom.ker (rho_k k) = Ppoly k` and `radical (Qpoly k) = Ppoly k`) over an
   arbitrary field `k` of characteristic zero.
+* `MohP3.HilbertBurch` – the exact complex
+  `0 → S^3 → S^4 → S → S/J → 0` for the manuscript's explicit matrix `Φ`,
+  proved directly from its signed maximal minors and the regular pair
+  `3(y^5-z^4), f1`, without using the parametrization-kernel theorem.
 
 The statements requested in the original specification are restated verbatim
 below, in the namespace `MohP3.Summary`.
@@ -109,6 +114,18 @@ theorem height_P : P.height = 2 := MohP3.height_P
 /-- The arithmetic rank of the Moh curve ideal is two: it is a set-theoretic
 complete intersection in the literal sense. -/
 theorem arithRank_P : arithRank P = 2 := MohP3.arithRank_P
+
+/-! ### Hilbert–Burch presentation -/
+
+open MohP3.HilbertBurch in
+/-- The manuscript's explicit `4 × 3` matrix gives an exact presentation of
+the four-generated ideal over every characteristic-zero field. -/
+theorem hilbertBurch_exact (k : Type*) [Field k] [CharZero k] :
+    Function.Injective (phiMap k) ∧
+      Function.Exact (phiMap k) (genMap k) ∧
+      Function.Exact (genMap k) (Ideal.Quotient.mkₐ k (J k)) ∧
+      Function.Surjective (Ideal.Quotient.mkₐ k (J k)) :=
+  MohP3.HilbertBurch.hilbertBurch_exact k
 
 /-! ### Formal-local statements over `k[[x,y,z]]`
 
@@ -202,3 +219,4 @@ Lean foundations `propext`, `Classical.choice`, `Quot.sound`. -/
 #print axioms MohP3.FormalLocal.arithRank_Pk
 #print axioms MohP3.height_Ppoly
 #print axioms MohP3.arithRank_Ppoly
+#print axioms MohP3.HilbertBurch.hilbertBurch_exact

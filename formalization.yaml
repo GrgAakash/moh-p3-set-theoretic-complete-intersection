@@ -10,7 +10,8 @@ project:
     the polynomial and formal-power-series parametrization kernels, proves the
     radical equality for the two-generated witness ideal, and proves that the
     curve ideal has height two and arithmetic rank two, both globally and
-    after completion.
+    after completion. It also verifies the exact Hilbert-Burch presentation
+    given by the manuscript's explicit four-by-three matrix.
   authors:
     - "Aakash Gurung"
   license: "Apache-2.0"
@@ -77,9 +78,10 @@ status:
     Each includes the exact parametrization kernel, the radical equality for
     the two explicit equations, height two, and arithmetic rank two. All are
     unconditional under Field and CharZero. The proof development also checks
-    the explicit square-containment certificate. It does not formalize the
-    manuscript's Hilbert-Burch matrix symmetrization as matrix algebra, and the
-    accompanying Macaulay2 computations are not part of the Lean trust chain.
+    the explicit square-containment certificate and the exact complex for the
+    manuscript's Hilbert-Burch matrix. It does not formalize the subsequent
+    row-operation and symmetric-adjugate construction producing H1 and H2, and
+    the accompanying Macaulay2 computations are not part of the Lean trust chain.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: [propext, Classical.choice, Quot.sound]
@@ -140,10 +142,10 @@ fidelity:
     proof of the formal-power-series kernel uses a convergent formal division
     algorithm for the weighted filtration wt(x)=6, wt(y)=8, wt(z)=10 rather
     than the manuscript's normalization and adic-completion argument. Lean
-    formalizes the resulting H1,H2 certificate identities but not the
-    Hilbert-Burch row operation and symmetric-adjugate construction that
-    motivate those equations in the manuscript. No theorem-level weakening or
-    additional hypothesis is present.
+    proves the Hilbert-Burch presentation through a direct signed-minor
+    criterion using the regular pair 3(y^5-z^4), f1. It does not formalize the
+    subsequent row operation and symmetric-adjugate construction that motivate
+    H1 and H2. No theorem-level weakening or additional hypothesis is present.
 
 review:
   status: "agent-reviewed and author-supervised"
@@ -155,7 +157,7 @@ review:
     and Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365. The
     submission package was subsequently migrated to Lean 4.35.0-rc2 and
     Mathlib revision 065356127b1dc0016f66b7283ce0ce2c4055aa55; the complete
-    8,954-job build succeeds. The migration changes no theorem statement or
+    8,955-job build succeeds. The migration changes no theorem statement or
     assumption and adds the module declarations required by the current Lean
     module system.
     Searches found no proof placeholders or custom axioms in the substantive
@@ -183,6 +185,14 @@ alignment:
         Packages the unconditional formal-power-series kernel, radical,
         height, and arithmetic-rank conclusions. The Lean proof uses weighted
         division instead of the source's completion argument.
+    - source: "Hilbert-Burch step in the proof of Lemma 3.1 of Papers/v2/Moh_P3_global.tex"
+      lean: "MohP3.HilbertBurch.hilbertBurch_exact"
+      module: "MohP3.HilbertBurch"
+      status: proved
+      note: >-
+        Proves the exact complex for the manuscript's explicit matrix. The Lean
+        proof uses a direct signed-minor criterion rather than invoking the
+        general Hilbert-Burch theorem.
 
 acknowledgements: >-
   The formalization uses Lean and Mathlib. Aristotle (Harmonic), OpenAI
